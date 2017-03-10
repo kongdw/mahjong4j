@@ -32,7 +32,7 @@ public class IpeikoTest {
             0, 0, 0, 0,
             0, 0, 2
         };
-        Tile last = Tile.M4;
+        Tile last = Tile.W4;
         hands = new Hands(tiles, last);
         player = new Player(hands);
         player.calculate();

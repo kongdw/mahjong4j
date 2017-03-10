@@ -19,13 +19,13 @@ public class RyuisoResolverTest {
 
     @Before
     public void setUp() throws Exception {
-        List<Mentsu> mentsu = new ArrayList<>(5);
-        mentsu.add(new Toitsu(HAT));
-        mentsu.add(new Shuntsu(false, S3));
-        mentsu.add(new Shuntsu(false, S3));
-        mentsu.add(new Kotsu(false, S8));
-        mentsu.add(new Kantsu(false, S6));
-        MentsuComp comp = new MentsuComp(mentsu, S4);
+        List<Meld> meld = new ArrayList<>(5);
+        meld.add(new Pair(GREEN));
+        meld.add(new Sequence(false, T3));
+        meld.add(new Sequence(false, T3));
+        meld.add(new Triplet(false, T8));
+        meld.add(new Kong(false, T6));
+        MeldDirectory comp = new MeldDirectory(meld, T4);
         resolver = new RyuisoResolver(comp);
     }
 

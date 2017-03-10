@@ -1,7 +1,7 @@
 package org.mahjong4j.yaku.yakuman;
 
-import org.mahjong4j.hands.Kotsu;
-import org.mahjong4j.hands.MentsuComp;
+import org.mahjong4j.hands.Triplet;
+import org.mahjong4j.hands.MeldDirectory;
 import org.mahjong4j.tile.TileType;
 
 import java.util.List;
@@ -17,10 +17,10 @@ import static org.mahjong4j.yaku.yakuman.Yakuman.DAISANGEN;
 public class DaisangenResolver implements YakumanResolver {
     private final Yakuman yakuman = DAISANGEN;
 
-    private final List<Kotsu> kotsuList;
+    private final List<Triplet> tripletList;
 
-    public DaisangenResolver(MentsuComp comp) {
-        kotsuList = comp.getKotsuKantsu();
+    public DaisangenResolver(MeldDirectory comp) {
+        tripletList = comp.getKotsuKantsu();
     }
 
     public Yakuman getYakuman() {
@@ -29,8 +29,8 @@ public class DaisangenResolver implements YakumanResolver {
 
     public boolean isMatch() {
         int sangenCount = 0;
-        for (Kotsu kotsu : kotsuList) {
-            if (kotsu.getTile().getType() == TileType.SANGEN) {
+        for (Triplet triplet : tripletList) {
+            if (triplet.getTile().getType() == TileType.DRAGON) {
                 sangenCount++;
             }
         }

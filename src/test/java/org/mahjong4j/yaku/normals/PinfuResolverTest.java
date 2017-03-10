@@ -2,10 +2,10 @@ package org.mahjong4j.yaku.normals;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mahjong4j.hands.Mentsu;
-import org.mahjong4j.hands.MentsuComp;
-import org.mahjong4j.hands.Shuntsu;
-import org.mahjong4j.hands.Toitsu;
+import org.mahjong4j.hands.Meld;
+import org.mahjong4j.hands.MeldDirectory;
+import org.mahjong4j.hands.Sequence;
+import org.mahjong4j.hands.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,14 +23,14 @@ public class PinfuResolverTest {
 
     @Before
     public void setUp() throws Exception {
-        List<Mentsu> mentsuList = new ArrayList<>(5);
-        mentsuList.add(new Toitsu(M9));
-        mentsuList.add(new Shuntsu(false, S2));
-        mentsuList.add(new Shuntsu(false, S3));
-        mentsuList.add(new Shuntsu(false, P3));
-        mentsuList.add(new Shuntsu(false, M5));
+        List<Meld> meldList = new ArrayList<>(5);
+        meldList.add(new Pair(W9));
+        meldList.add(new Sequence(false, T2));
+        meldList.add(new Sequence(false, T3));
+        meldList.add(new Sequence(false, D3));
+        meldList.add(new Sequence(false, W5));
 
-        MentsuComp comp = new MentsuComp(mentsuList, S3);
+        MeldDirectory comp = new MeldDirectory(meldList, T3);
         resolver = new PinfuResolver(comp, null, null);
     }
 

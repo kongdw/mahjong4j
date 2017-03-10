@@ -27,22 +27,22 @@ public class HandsVarArgsTest {
             0, 0, 0
         };
 
-        actualHands = new Hands(otherTiles, P7,
-            new Kotsu(false, S2), new Shuntsu(true, M7), new Kantsu(false, SHA));
+        actualHands = new Hands(otherTiles, D7,
+            new Triplet(false, T2), new Sequence(true, W7), new Kong(false, WEST));
     }
 
     @Test
     public void testGetMentsuCompList() throws Exception {
-        List<Mentsu> expectedMentsuList = new ArrayList<>(5);
-        expectedMentsuList.add(new Toitsu(S1));
-        expectedMentsuList.add(new Shuntsu(false, P7));
-        expectedMentsuList.add(new Shuntsu(true, M7));
-        expectedMentsuList.add(new Kotsu(false, S2));
-        expectedMentsuList.add(new Kantsu(false, SHA));
-        MentsuComp expected = new MentsuComp(expectedMentsuList, P7);
+        List<Meld> expectedMeldList = new ArrayList<>(5);
+        expectedMeldList.add(new Pair(T1));
+        expectedMeldList.add(new Sequence(false, D7));
+        expectedMeldList.add(new Sequence(true, W7));
+        expectedMeldList.add(new Triplet(false, T2));
+        expectedMeldList.add(new Kong(false, WEST));
+        MeldDirectory expected = new MeldDirectory(expectedMeldList, D7);
 
-        assertEquals(1, actualHands.getMentsuCompSet().size());
-        assertThat(actualHands.getMentsuCompSet(), hasItems(expected));
+        assertEquals(1, actualHands.getMeldDirectorySet().size());
+        assertThat(actualHands.getMeldDirectorySet(), hasItems(expected));
     }
 
     @Test
@@ -52,7 +52,7 @@ public class HandsVarArgsTest {
 
     @Test
     public void testGetLast() throws Exception {
-        Tile expected = P7;
+        Tile expected = D7;
         assertEquals(expected, actualHands.getLast());
     }
 

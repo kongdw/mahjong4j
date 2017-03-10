@@ -9,46 +9,46 @@ import static org.mahjong4j.tile.Tile.*;
 /**
  * @author yu1ro
  */
-public class KotsuTest {
-    private Kotsu open;
-    private Kotsu close;
-    private Kotsu closeFls;
-    private Kotsu equal;
+public class TripletTest {
+    private Triplet open;
+    private Triplet close;
+    private Triplet closeFls;
+    private Triplet equal;
 
     @Before
     public void setUp() throws Exception {
-        open = new Kotsu(true, TON);
-        close = new Kotsu(false, SHA, SHA, SHA);
-        closeFls = new Kotsu(false, HAK, HAK, CHN);
-        equal = new Kotsu(true, TON, TON, TON);
+        open = new Triplet(true, EAST);
+        close = new Triplet(false, WEST, WEST, WEST);
+        closeFls = new Triplet(false, WHITE, WHITE, RED);
+        equal = new Triplet(true, EAST, EAST, EAST);
     }
 
     @Test
     public void testCheckTrue() throws Exception {
-        assertTrue(Kotsu.check(S2, S2, S2));
-        assertTrue(Kotsu.check(HAK, HAK, HAK));
-        assertTrue(Kotsu.check(NAN, NAN, NAN));
+        assertTrue(Triplet.check(T2, T2, T2));
+        assertTrue(Triplet.check(WHITE, WHITE, WHITE));
+        assertTrue(Triplet.check(SOUTH, SOUTH, SOUTH));
     }
 
     @Test
     public void testCheckFalse() throws Exception {
-        assertFalse(Kotsu.check(P2, P2, P4));
-        assertFalse(Kotsu.check(HAK, CHN, CHN));
-        assertFalse(Kotsu.check(TON, NAN, SHA));
+        assertFalse(Triplet.check(D2, D2, D4));
+        assertFalse(Triplet.check(WHITE, RED, RED));
+        assertFalse(Triplet.check(EAST, SOUTH, WEST));
     }
 
     @Test
     public void testGetTile() throws Exception {
-        assertEquals(TON, open.getTile());
-        assertEquals(SHA, close.getTile());
+        assertEquals(EAST, open.getTile());
+        assertEquals(WEST, close.getTile());
         assertNull(closeFls.getTile());
     }
 
     @Test
     public void testGetIsMentsu() throws Exception {
-        assertTrue(open.isMentsu());
-        assertTrue(close.isMentsu());
-        assertFalse(closeFls.isMentsu());
+        assertTrue(open.isMeld());
+        assertTrue(close.isMeld());
+        assertFalse(closeFls.isMeld());
     }
 
     @Test

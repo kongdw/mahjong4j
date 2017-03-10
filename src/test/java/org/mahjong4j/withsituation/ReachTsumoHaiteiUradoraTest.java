@@ -35,17 +35,17 @@ public class ReachTsumoHaiteiUradoraTest {
             0, 0, 3, 0,
             0, 0, 0
         };
-        Tile last = M7;
+        Tile last = W7;
         Hands hands = new Hands(tiles, last);
         List<Tile> dora = new ArrayList<>(1);
-        dora.add(CHN);
+        dora.add(RED);
 
         List<Tile> uradora = new ArrayList<>(1);
-        uradora.add(M8);
+        uradora.add(W8);
         GeneralSituation general;
-        general = new GeneralSituation(false, true, NAN, dora, uradora);
+        general = new GeneralSituation(false, true, SOUTH, dora, uradora);
         PersonalSituation personal;
-        personal = new PersonalSituation(true, false, true, false, false, false, NAN);
+        personal = new PersonalSituation(true, false, true, false, false, false, SOUTH);
 
         player = new Player(hands, general, personal);
         player.calculate();

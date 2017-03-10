@@ -16,40 +16,40 @@ import static org.mahjong4j.tile.Tile.*;
 /**
  * @author yu1ro
  */
-public class IllegalMentsuSizeExceptionTest {
-    private List<Mentsu> less;
-    private List<Mentsu> more;
+public class IllegalMeldSizeExceptionTest {
+    private List<Meld> less;
+    private List<Meld> more;
 
     @Before
     public void setUp() throws Exception {
         less = new ArrayList<>(4);
-        less.add(new Toitsu(P7));
-        less.add(new Shuntsu(false, S3));
-        less.add(new Shuntsu(false, S3));
-        less.add(new Kotsu(false, NAN));
+        less.add(new Pair(D7));
+        less.add(new Sequence(false, T3));
+        less.add(new Sequence(false, T3));
+        less.add(new Triplet(false, SOUTH));
 
         more = new ArrayList<>(8);
-        more.add(new Toitsu(P7));
-        more.add(new Shuntsu(false, S3));
-        more.add(new Shuntsu(false, S3));
-        more.add(new Kotsu(false, NAN));
-        more.add(new Shuntsu(false, S3));
-        more.add(new Shuntsu(false, S3));
-        more.add(new Kotsu(false, NAN));
+        more.add(new Pair(D7));
+        more.add(new Sequence(false, T3));
+        more.add(new Sequence(false, T3));
+        more.add(new Triplet(false, SOUTH));
+        more.add(new Sequence(false, T3));
+        more.add(new Sequence(false, T3));
+        more.add(new Triplet(false, SOUTH));
     }
 
     @Test
     public void testSetLessMentsu() throws Exception {
         try {
-            new MentsuComp(less, S3);
+            new MeldDirectory(less, T3);
         } catch (IllegalMentsuSizeException e) {
             assertEquals("面子の組が和了の形になっていません", e.getMessage());
             assertEquals("面子の数は合計で5個もしくは七対子の場合のみ7個でなければなりませんが4個の面子が見つかりました", e.getAdvice());
-            assertThat(e.getMentsuList(), hasItems(
-                new Toitsu(P7),
-                new Shuntsu(false, S3),
-                new Kotsu(false, NAN),
-                new Shuntsu(false, S3)
+            assertThat(e.getMeldList(), hasItems(
+                new Pair(D7),
+                new Sequence(false, T3),
+                new Triplet(false, SOUTH),
+                new Sequence(false, T3)
             ));
         }
     }
@@ -57,18 +57,18 @@ public class IllegalMentsuSizeExceptionTest {
     @Test
     public void testSetMoreMentsu() throws Exception {
         try {
-            new MentsuComp(more, S2);
+            new MeldDirectory(more, T2);
         } catch (IllegalMentsuSizeException e) {
             assertEquals("面子の組が和了の形になっていません", e.getMessage());
             assertEquals("面子の数は合計で5個もしくは七対子の場合のみ7個でなければなりませんが7個の面子が見つかりました", e.getAdvice());
-            assertThat(e.getMentsuList(), hasItems(
-                new Toitsu(P7),
-                new Shuntsu(false, S3),
-                new Kotsu(false, NAN),
-                new Shuntsu(false, S3),
-                new Shuntsu(false, S3),
-                new Kotsu(false, NAN),
-                new Shuntsu(false, S3)
+            assertThat(e.getMeldList(), hasItems(
+                new Pair(D7),
+                new Sequence(false, T3),
+                new Triplet(false, SOUTH),
+                new Sequence(false, T3),
+                new Sequence(false, T3),
+                new Triplet(false, SOUTH),
+                new Sequence(false, T3)
             ));
         }
     }

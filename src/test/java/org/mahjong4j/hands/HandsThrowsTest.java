@@ -7,8 +7,8 @@ import org.mahjong4j.MahjongTileOverFlowException;
 import org.mahjong4j.tile.Tile;
 
 import static org.junit.Assert.assertEquals;
-import static org.mahjong4j.tile.Tile.M1;
-import static org.mahjong4j.tile.Tile.TON;
+import static org.mahjong4j.tile.Tile.W1;
+import static org.mahjong4j.tile.Tile.EAST;
 
 /**
  * @author yu1ro
@@ -24,7 +24,7 @@ public class HandsThrowsTest {
             0, 0, 0, 0,
             0, 2, 0
         };
-        new Hands(tiles, M1);
+        new Hands(tiles, W1);
     }
 
     @Test
@@ -38,10 +38,10 @@ public class HandsThrowsTest {
         };
 
         try {
-            new Hands(tiles, Tile.M6);
+            new Hands(tiles, Tile.W6);
         } catch (MahjongTileOverFlowException e) {//messageもテストするためにcatch
             assertEquals("麻雀の牌は4枚までしかありません", e.getMessage());
-            assertEquals("M2(code = 1)が5枚見つかりました", e.getAdvice());
+            assertEquals("W2(code = 1)が5枚見つかりました", e.getAdvice());
         }
     }
 
@@ -49,19 +49,19 @@ public class HandsThrowsTest {
     public void testIllegalShuntsu() throws Exception {
         String advice = "M1を識別牌として保存しようとしました\n"
             + "2番目の牌を順子識別牌とするため、1・9牌は識別牌になりえません";
-        shuntsuCheck(M1, advice);
+        shuntsuCheck(W1, advice);
     }
 
     @Test
     public void testIllegalShuntsuJihai() throws Exception {
         String advice = "TONを識別牌として保存しようとしました\n"
             + "字牌は順子になりえません";
-        shuntsuCheck(TON, advice);
+        shuntsuCheck(EAST, advice);
     }
 
     private void shuntsuCheck(Tile a, String expected) {
         try {
-            new Shuntsu(true, a);
+            new Sequence(true, a);
         } catch (IllegalShuntsuIdentifierException e) {
             assertEquals("順子識別牌としてありえない牌を検出しました", e.getMessage());
 

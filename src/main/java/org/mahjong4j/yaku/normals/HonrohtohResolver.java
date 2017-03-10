@@ -1,10 +1,10 @@
 package org.mahjong4j.yaku.normals;
 
 
-import org.mahjong4j.hands.Kotsu;
-import org.mahjong4j.hands.MentsuComp;
-import org.mahjong4j.hands.Shuntsu;
-import org.mahjong4j.hands.Toitsu;
+import org.mahjong4j.hands.Triplet;
+import org.mahjong4j.hands.MeldDirectory;
+import org.mahjong4j.hands.Sequence;
+import org.mahjong4j.hands.Pair;
 
 import java.util.List;
 
@@ -19,14 +19,14 @@ import static org.mahjong4j.yaku.normals.NormalYaku.HONROHTOH;
 public class HonrohtohResolver implements NormalYakuResolver {
     private final NormalYaku yakuEnum = HONROHTOH;
 
-    private List<Shuntsu> shuntsuList;
-    private List<Toitsu> toitsuList;
-    private List<Kotsu> kotsuList;
+    private List<Sequence> sequenceList;
+    private List<Pair> pairList;
+    private List<Triplet> tripletList;
 
-    public HonrohtohResolver(MentsuComp comp) {
-        shuntsuList = comp.getShuntsuList();
-        toitsuList = comp.getToitsuList();
-        kotsuList = comp.getKotsuKantsu();
+    public HonrohtohResolver(MeldDirectory comp) {
+        sequenceList = comp.getSequenceList();
+        pairList = comp.getPairList();
+        tripletList = comp.getKotsuKantsu();
     }
 
     public NormalYaku getNormalYaku() {
@@ -39,18 +39,18 @@ public class HonrohtohResolver implements NormalYakuResolver {
      * @return 混老頭かどうか
      */
     public boolean isMatch() {
-        if (shuntsuList.size() > 0) {
+        if (sequenceList.size() > 0) {
             return false;
         }
-        for (Toitsu toitsu : toitsuList) {
-            int num = toitsu.getTile().getNumber();
+        for (Pair pair : pairList) {
+            int num = pair.getTile().getNumber();
             if (1 < num && num < 9) {
                 return false;
             }
         }
 
-        for (Kotsu kotsu : kotsuList) {
-            int num = kotsu.getTile().getNumber();
+        for (Triplet triplet : tripletList) {
+            int num = triplet.getTile().getNumber();
             if (1 < num && num < 9) {
                 return false;
             }

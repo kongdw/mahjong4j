@@ -20,13 +20,13 @@ public class JunchanResolverTest {
 
     @Before
     public void setUp() throws Exception {
-        List<Mentsu> list = new ArrayList<>(5);
-        list.add(new Toitsu(M1));
-        list.add(new Shuntsu(true, S2));
-        list.add(new Shuntsu(false, P2));
-        list.add(new Kantsu(false, P9));
-        list.add(new Kotsu(true, P1));
-        MentsuComp comp = new MentsuComp(list, P1);
+        List<Meld> list = new ArrayList<>(5);
+        list.add(new Pair(W1));
+        list.add(new Sequence(true, T2));
+        list.add(new Sequence(false, D2));
+        list.add(new Kong(false, D9));
+        list.add(new Triplet(true, D1));
+        MeldDirectory comp = new MeldDirectory(list, D1);
         resolver = new JunchanResolver(comp);
     }
 

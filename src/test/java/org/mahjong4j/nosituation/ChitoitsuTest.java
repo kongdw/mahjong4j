@@ -14,7 +14,7 @@ import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.junit.Assert.assertThat;
 import static org.mahjong4j.Score.SCORE0;
-import static org.mahjong4j.tile.Tile.M8;
+import static org.mahjong4j.tile.Tile.W8;
 import static org.mahjong4j.yaku.normals.NormalYaku.CHITOITSU;
 
 /**
@@ -33,7 +33,7 @@ public class ChitoitsuTest {
             0, 2, 0, 0,
             0, 0, 0
         };
-        Tile last = M8;
+        Tile last = W8;
         hands = new Hands(tiles, last);
         player = new Player(hands);
         player.calculate();

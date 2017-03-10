@@ -2,7 +2,7 @@ package org.mahjong4j;
 
 import org.mahjong4j.tile.Tile;
 
-import static org.mahjong4j.tile.Tile.TON;
+import static org.mahjong4j.tile.Tile.EAST;
 
 /**
  * @author yu1ro
@@ -28,7 +28,7 @@ public class PersonalSituation {
         this.isChankan = isChankan;
         this.isRinshankaihoh = isRinshankaihoh;
         this.jikaze = jikaze;
-        isParent = (jikaze == TON);
+        isParent = (jikaze == EAST);
     }
 
     public boolean isParent() {
@@ -89,6 +89,6 @@ public class PersonalSituation {
 
     public void setJikaze(Tile jikaze) {
         this.jikaze = jikaze;
-        isParent = (jikaze == TON);
+        isParent = (jikaze == EAST);
     }
 }

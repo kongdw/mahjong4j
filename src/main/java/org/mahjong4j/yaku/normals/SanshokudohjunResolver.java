@@ -1,7 +1,7 @@
 package org.mahjong4j.yaku.normals;
 
-import org.mahjong4j.hands.MentsuComp;
-import org.mahjong4j.hands.Shuntsu;
+import org.mahjong4j.hands.MeldDirectory;
+import org.mahjong4j.hands.Sequence;
 import org.mahjong4j.tile.TileType;
 
 import java.util.List;
@@ -17,11 +17,11 @@ import static org.mahjong4j.yaku.normals.NormalYaku.SANSHOKUDOHJUN;
 public class SanshokudohjunResolver extends SanshokuResolver implements NormalYakuResolver {
     private final NormalYaku yakuEnum = SANSHOKUDOHJUN;
     private final int shuntsuCount;
-    private final List<Shuntsu> shuntsuList;
+    private final List<Sequence> sequenceList;
 
-    public SanshokudohjunResolver(MentsuComp comp) {
+    public SanshokudohjunResolver(MeldDirectory comp) {
         shuntsuCount = comp.getShuntsuCount();
-        shuntsuList = comp.getShuntsuList();
+        sequenceList = comp.getSequenceList();
     }
 
     public NormalYaku getNormalYaku() {
@@ -33,14 +33,14 @@ public class SanshokudohjunResolver extends SanshokuResolver implements NormalYa
             return false;
         }
 
-        Shuntsu candidate = null;
+        Sequence candidate = null;
 
-        for (Shuntsu shuntsu : shuntsuList) {
-            TileType shuntsuType = shuntsu.getTile().getType();
-            int shuntsuNum = shuntsu.getTile().getNumber();
+        for (Sequence sequence : sequenceList) {
+            TileType shuntsuType = sequence.getTile().getType();
+            int shuntsuNum = sequence.getTile().getNumber();
 
             if (candidate == null) {
-                candidate = shuntsu;
+                candidate = sequence;
                 continue;
             }
 
@@ -48,7 +48,7 @@ public class SanshokudohjunResolver extends SanshokuResolver implements NormalYa
                 detectType(shuntsuType);
                 detectType(candidate.getTile().getType());
             } else {
-                candidate = shuntsu;
+                candidate = sequence;
             }
         }
         return manzu && pinzu && sohzu;

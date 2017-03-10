@@ -1,7 +1,7 @@
 package org.mahjong4j.yaku.normals;
 
-import org.mahjong4j.hands.Kotsu;
-import org.mahjong4j.hands.MentsuComp;
+import org.mahjong4j.hands.Triplet;
+import org.mahjong4j.hands.MeldDirectory;
 import org.mahjong4j.tile.TileType;
 
 import java.util.List;
@@ -17,11 +17,11 @@ import static org.mahjong4j.yaku.normals.NormalYaku.SANSHOKUDOHKO;
 public class SanshokudohkoResolver extends SanshokuResolver implements NormalYakuResolver {
     private final NormalYaku yakuEnum = SANSHOKUDOHKO;
     private final int kotsuCount;
-    private final List<Kotsu> kotsuList;
+    private final List<Triplet> tripletList;
 
-    public SanshokudohkoResolver(MentsuComp comp) {
+    public SanshokudohkoResolver(MeldDirectory comp) {
         kotsuCount = comp.getKotsuCount() + comp.getKantsuCount();
-        kotsuList = comp.getKotsuKantsu();
+        tripletList = comp.getKotsuKantsu();
     }
 
     public NormalYaku getNormalYaku() {
@@ -33,13 +33,13 @@ public class SanshokudohkoResolver extends SanshokuResolver implements NormalYak
             return false;
         }
 
-        Kotsu candidate = null;
-        for (Kotsu kotsu : kotsuList) {
-            TileType shuntsuType = kotsu.getTile().getType();
-            int shuntsuNum = kotsu.getTile().getNumber();
+        Triplet candidate = null;
+        for (Triplet triplet : tripletList) {
+            TileType shuntsuType = triplet.getTile().getType();
+            int shuntsuNum = triplet.getTile().getNumber();
 
             if (candidate == null) {
-                candidate = kotsu;
+                candidate = triplet;
                 continue;
             }
 
@@ -47,7 +47,7 @@ public class SanshokudohkoResolver extends SanshokuResolver implements NormalYak
                 detectType(shuntsuType);
                 detectType(candidate.getTile().getType());
             } else {
-                candidate = kotsu;
+                candidate = triplet;
             }
         }
         return manzu && pinzu && sohzu;

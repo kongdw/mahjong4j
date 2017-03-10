@@ -19,13 +19,13 @@ public class TsuisoResolverNormalTest {
 
     @Before
     public void setUp() throws Exception {
-        List<Mentsu> normalList = new ArrayList<>(5);
-        normalList.add(new Toitsu(NAN));
-        normalList.add(new Kantsu(false, SHA));
-        normalList.add(new Kotsu(true, HAK));
-        normalList.add(new Kotsu(false, HAT));
-        normalList.add(new Kantsu(true, TON));
-        MentsuComp normal = new MentsuComp(normalList, SHA);
+        List<Meld> normalList = new ArrayList<>(5);
+        normalList.add(new Pair(SOUTH));
+        normalList.add(new Kong(false, WEST));
+        normalList.add(new Triplet(true, WHITE));
+        normalList.add(new Triplet(false, GREEN));
+        normalList.add(new Kong(true, EAST));
+        MeldDirectory normal = new MeldDirectory(normalList, WEST);
         resolver = new TsuisoResolver(normal);
     }
 

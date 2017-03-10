@@ -19,13 +19,13 @@ public class HonitsuResolverTest {
 
     @Before
     public void setUp() throws Exception {
-        List<Mentsu> mentsuList = new ArrayList<>(5);
-        mentsuList.add(new Toitsu(SHA));
-        mentsuList.add(new Shuntsu(true, M5));
-        mentsuList.add(new Shuntsu(true, M5));
-        mentsuList.add(new Kotsu(false, TON));
-        mentsuList.add(new Kantsu(false, HAT));
-        MentsuComp comp = new MentsuComp(mentsuList, TON);
+        List<Meld> meldList = new ArrayList<>(5);
+        meldList.add(new Pair(WEST));
+        meldList.add(new Sequence(true, W5));
+        meldList.add(new Sequence(true, W5));
+        meldList.add(new Triplet(false, EAST));
+        meldList.add(new Kong(false, GREEN));
+        MeldDirectory comp = new MeldDirectory(meldList, EAST);
         resolver = new HonitsuResolver(comp);
     }
 

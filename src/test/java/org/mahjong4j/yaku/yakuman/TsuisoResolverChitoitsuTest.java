@@ -2,9 +2,9 @@ package org.mahjong4j.yaku.yakuman;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mahjong4j.hands.Mentsu;
-import org.mahjong4j.hands.MentsuComp;
-import org.mahjong4j.hands.Toitsu;
+import org.mahjong4j.hands.Meld;
+import org.mahjong4j.hands.MeldDirectory;
+import org.mahjong4j.hands.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,16 +21,16 @@ public class TsuisoResolverChitoitsuTest {
 
     @Before
     public void setUp() throws Exception {
-        List<Mentsu> normalList = new ArrayList<>(5);
-        normalList.add(new Toitsu(TON));
-        normalList.add(new Toitsu(NAN));
-        normalList.add(new Toitsu(SHA));
-        normalList.add(new Toitsu(PEI));
-        normalList.add(new Toitsu(HAK));
-        normalList.add(new Toitsu(HAT));
-        normalList.add(new Toitsu(CHN));
+        List<Meld> normalList = new ArrayList<>(5);
+        normalList.add(new Pair(EAST));
+        normalList.add(new Pair(SOUTH));
+        normalList.add(new Pair(WEST));
+        normalList.add(new Pair(NORTH));
+        normalList.add(new Pair(WHITE));
+        normalList.add(new Pair(GREEN));
+        normalList.add(new Pair(RED));
 
-        MentsuComp normal = new MentsuComp(normalList, SHA);
+        MeldDirectory normal = new MeldDirectory(normalList, WEST);
         resolver = new TsuisoResolver(normal);
     }
 

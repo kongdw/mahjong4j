@@ -1,9 +1,9 @@
 package org.mahjong4j.yaku.normals;
 
 
-import org.mahjong4j.hands.Kotsu;
-import org.mahjong4j.hands.MentsuComp;
-import org.mahjong4j.hands.Shuntsu;
+import org.mahjong4j.hands.Triplet;
+import org.mahjong4j.hands.MeldDirectory;
+import org.mahjong4j.hands.Sequence;
 
 import static org.mahjong4j.yaku.normals.NormalYaku.CHANTA;
 
@@ -17,9 +17,9 @@ import static org.mahjong4j.yaku.normals.NormalYaku.CHANTA;
 public class ChantaResolver implements NormalYakuResolver {
     private final NormalYaku yakuEnum = CHANTA;
 
-    private MentsuComp comp;
+    private MeldDirectory comp;
 
-    public ChantaResolver(MentsuComp comp) {
+    public ChantaResolver(MeldDirectory comp) {
         this.comp = comp;
     }
 
@@ -44,16 +44,16 @@ public class ChantaResolver implements NormalYakuResolver {
         }
 
         //順子が123の順子と789の順子でなければfalse
-        for (Shuntsu shuntsu : comp.getShuntsuList()) {
-            int shuntsuNum = shuntsu.getTile().getNumber();
+        for (Sequence sequence : comp.getSequenceList()) {
+            int shuntsuNum = sequence.getTile().getNumber();
             if (shuntsuNum != 2 && shuntsuNum != 8) {
                 return false;
             }
         }
 
         //刻子・槓子が一九字牌以外ならfalse
-        for (Kotsu kotsu : comp.getKotsuKantsu()) {
-            int kotsuNum = kotsu.getTile().getNumber();
+        for (Triplet triplet : comp.getKotsuKantsu()) {
+            int kotsuNum = triplet.getTile().getNumber();
             if (kotsuNum != 1 && kotsuNum != 9 && kotsuNum != 0) {
                 return false;
             }

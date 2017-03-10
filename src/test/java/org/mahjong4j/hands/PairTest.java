@@ -14,43 +14,43 @@ import static org.junit.Assert.*;
 /**
  * @author yu1ro
  */
-public class ToitsuTest {
-    Toitsu toitsu1;
-    Toitsu toitsu2;
-    Toitsu toitsuF;
+public class PairTest {
+    Pair pair1;
+    Pair pair2;
+    Pair pairF;
 
     @Before
     public void setUp() throws Exception {
-        toitsu1 = new Toitsu(Tile.M1);
-        toitsu2 = new Toitsu(Tile.M1, Tile.M1);
-        toitsuF = new Toitsu(Tile.M1, Tile.M2);
+        pair1 = new Pair(Tile.W1);
+        pair2 = new Pair(Tile.W1, Tile.W1);
+        pairF = new Pair(Tile.W1, Tile.W2);
     }
 
     @Test
     public void testCheck() throws Exception {
-        assertTrue(Toitsu.check(Tile.P1, Tile.P1));
-        assertFalse(Toitsu.check(Tile.P1, Tile.P4));
+        assertTrue(Pair.check(Tile.D1, Tile.D1));
+        assertFalse(Pair.check(Tile.D1, Tile.D4));
     }
 
     @Test
     public void testGetTile() throws Exception {
-        assertEquals(Tile.M1, toitsu1.getTile());
-        assertEquals(Tile.M1, toitsu2.getTile());
-        assertEquals(null, toitsuF.getTile());
+        assertEquals(Tile.W1, pair1.getTile());
+        assertEquals(Tile.W1, pair2.getTile());
+        assertEquals(null, pairF.getTile());
     }
 
     @Test
     public void testGetIsMentsu() throws Exception {
-        assertTrue(toitsu1.isMentsu());
-        assertTrue(toitsu2.isMentsu());
-        assertFalse(toitsuF.isMentsu());
+        assertTrue(pair1.isMeld());
+        assertTrue(pair2.isMeld());
+        assertFalse(pairF.isMeld());
     }
 
     @Test
     public void testGetIsOpen() throws Exception {
-        assertFalse(toitsu1.isOpen());
-        assertFalse(toitsu2.isOpen());
-        assertFalse(toitsuF.isOpen());
+        assertFalse(pair1.isOpen());
+        assertFalse(pair2.isOpen());
+        assertFalse(pairF.isOpen());
     }
 
     @Test
@@ -62,13 +62,13 @@ public class ToitsuTest {
             0, 0, 0, 0,
             0, 2, 0
         };
-        List<Toitsu> expected, actual = Toitsu.findJantoCandidate(tiles);
+        List<Pair> expected, actual = Pair.findJantoCandidate(tiles);
 
         assertEquals(1, actual.size());
 
         expected = new ArrayList<>(7);
-        expected.add(new Toitsu(Tile.HAK));
-        assertEquals(Tile.HAK, expected.get(0).getTile());
+        expected.add(new Pair(Tile.WHITE));
+        assertEquals(Tile.WHITE, expected.get(0).getTile());
     }
 
 
@@ -81,19 +81,19 @@ public class ToitsuTest {
             0, 0, 0, 0,
             0, 0, 0
         };
-        Toitsu.findJantoCandidate(tiles);
+        Pair.findJantoCandidate(tiles);
     }
 
     @Test
     public void testEquals() throws Exception {
-        assertTrue(toitsu1.equals(toitsu2));
-        assertFalse(toitsu1.equals(toitsuF));
+        assertTrue(pair1.equals(pair2));
+        assertFalse(pair1.equals(pairF));
     }
 
     @After
     public void tearDown() throws Exception {
-        assertEquals(toitsu1.hashCode(), toitsu2.hashCode());
-        assertNotEquals(toitsu1.hashCode(), toitsuF.hashCode());
+        assertEquals(pair1.hashCode(), pair2.hashCode());
+        assertNotEquals(pair1.hashCode(), pairF.hashCode());
 
     }
 }

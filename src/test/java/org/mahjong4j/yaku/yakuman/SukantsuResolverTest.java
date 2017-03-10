@@ -2,10 +2,10 @@ package org.mahjong4j.yaku.yakuman;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mahjong4j.hands.Kantsu;
-import org.mahjong4j.hands.Mentsu;
-import org.mahjong4j.hands.MentsuComp;
-import org.mahjong4j.hands.Toitsu;
+import org.mahjong4j.hands.Kong;
+import org.mahjong4j.hands.Meld;
+import org.mahjong4j.hands.MeldDirectory;
+import org.mahjong4j.hands.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +23,13 @@ public class SukantsuResolverTest {
 
     @Before
     public void setUp() throws Exception {
-        List<Mentsu> mentsu = new ArrayList<>(5);
-        mentsu.add(new Toitsu(M3));
-        mentsu.add(new Kantsu(false, M2));
-        mentsu.add(new Kantsu(true, S5));
-        mentsu.add(new Kantsu(true, P9));
-        mentsu.add(new Kantsu(false, SHA));
-        MentsuComp comp = new MentsuComp(mentsu, M3);
+        List<Meld> meld = new ArrayList<>(5);
+        meld.add(new Pair(W3));
+        meld.add(new Kong(false, W2));
+        meld.add(new Kong(true, T5));
+        meld.add(new Kong(true, D9));
+        meld.add(new Kong(false, WEST));
+        MeldDirectory comp = new MeldDirectory(meld, W3);
         resolver = new SukantsuResolver(comp);
     }
 

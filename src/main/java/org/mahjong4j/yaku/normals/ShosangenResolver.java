@@ -1,9 +1,9 @@
 package org.mahjong4j.yaku.normals;
 
 
-import org.mahjong4j.hands.Kotsu;
-import org.mahjong4j.hands.MentsuComp;
-import org.mahjong4j.hands.Toitsu;
+import org.mahjong4j.hands.Triplet;
+import org.mahjong4j.hands.MeldDirectory;
+import org.mahjong4j.hands.Pair;
 import org.mahjong4j.tile.TileType;
 
 import java.util.List;
@@ -19,12 +19,12 @@ import static org.mahjong4j.yaku.normals.NormalYaku.SHOSANGEN;
 public class ShosangenResolver implements NormalYakuResolver {
     private final NormalYaku yakuEnum = SHOSANGEN;
 
-    private final Toitsu janto;
-    private final List<Kotsu> kotsuList;
+    private final Pair janto;
+    private final List<Triplet> tripletList;
 
-    public ShosangenResolver(MentsuComp comp) {
+    public ShosangenResolver(MeldDirectory comp) {
         janto = comp.getJanto();
-        kotsuList = comp.getKotsuKantsu();
+        tripletList = comp.getKotsuKantsu();
     }
 
     public NormalYaku getNormalYaku() {
@@ -37,12 +37,12 @@ public class ShosangenResolver implements NormalYakuResolver {
             return false;
         }
 
-        if (janto.getTile().getType() != TileType.SANGEN) {
+        if (janto.getTile().getType() != TileType.DRAGON) {
             return false;
         }
         int count = 0;
-        for (Kotsu kotsu : kotsuList) {
-            if (kotsu.getTile().getType() == TileType.SANGEN) {
+        for (Triplet triplet : tripletList) {
+            if (triplet.getTile().getType() == TileType.DRAGON) {
                 count++;
             }
             if (count == 2) {

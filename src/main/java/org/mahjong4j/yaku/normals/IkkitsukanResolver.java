@@ -1,7 +1,7 @@
 package org.mahjong4j.yaku.normals;
 
-import org.mahjong4j.hands.MentsuComp;
-import org.mahjong4j.hands.Shuntsu;
+import org.mahjong4j.hands.MeldDirectory;
+import org.mahjong4j.hands.Sequence;
 import org.mahjong4j.tile.TileType;
 
 import java.util.ArrayList;
@@ -18,11 +18,11 @@ import static org.mahjong4j.yaku.normals.NormalYaku.IKKITSUKAN;
 public class IkkitsukanResolver implements NormalYakuResolver {
     private final NormalYaku yakuEnum = IKKITSUKAN;
 
-    private List<Shuntsu> shuntsuList;
+    private List<Sequence> sequenceList;
     private int shuntsuCount;
 
-    public IkkitsukanResolver(MentsuComp comp) {
-        shuntsuList = comp.getShuntsuList();
+    public IkkitsukanResolver(MeldDirectory comp) {
+        sequenceList = comp.getSequenceList();
         shuntsuCount = comp.getShuntsuCount();
     }
 
@@ -35,19 +35,19 @@ public class IkkitsukanResolver implements NormalYakuResolver {
             return false;
         }
 
-        List<Shuntsu> manzu = new ArrayList<>(4);
-        List<Shuntsu> sohzu = new ArrayList<>(4);
-        List<Shuntsu> pinzu = new ArrayList<>(4);
+        List<Sequence> manzu = new ArrayList<>(4);
+        List<Sequence> sohzu = new ArrayList<>(4);
+        List<Sequence> pinzu = new ArrayList<>(4);
 
         //各タイプに振り分ける
-        for (Shuntsu shuntsu : shuntsuList) {
-            TileType type = shuntsu.getTile().getType();
-            if (type == TileType.MANZU) {
-                manzu.add(shuntsu);
-            } else if (type == TileType.SOHZU) {
-                sohzu.add(shuntsu);
-            } else if (type == TileType.PINZU) {
-                pinzu.add(shuntsu);
+        for (Sequence sequence : sequenceList) {
+            TileType type = sequence.getTile().getType();
+            if (type == TileType.CHARACTER) {
+                manzu.add(sequence);
+            } else if (type == TileType.BAMBOO) {
+                sohzu.add(sequence);
+            } else if (type == TileType.DOT) {
+                pinzu.add(sequence);
             }
         }
 
@@ -68,17 +68,17 @@ public class IkkitsukanResolver implements NormalYakuResolver {
      * 例えば萬子の順子のみが含まれる場合に正しく動作します
      * 逆に、萬子123 筒子 456 789の場合もtrueになってしまいます
      *
-     * @param oneTypeShuntsuList 単一のタイプの順子リスト
+     * @param oneTypeSequenceList 単一のタイプの順子リスト
      * @return 123 456 789が全て含まれるか
      */
-    private boolean isIkkitsukan(List<Shuntsu> oneTypeShuntsuList) {
+    private boolean isIkkitsukan(List<Sequence> oneTypeSequenceList) {
         //この3つが全てtrueになれば一気通貫
         boolean number2 = false;
         boolean number5 = false;
         boolean number8 = false;
 
-        for (Shuntsu shuntsu : oneTypeShuntsuList) {
-            int num = shuntsu.getTile().getNumber();
+        for (Sequence sequence : oneTypeSequenceList) {
+            int num = sequence.getTile().getNumber();
             if (num == 2) {
                 number2 = true;
             } else if (num == 5) {

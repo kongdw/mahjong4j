@@ -35,17 +35,17 @@ public class ChihoTest {
             0, 0, 0, 0,
             0, 0, 0
         };
-        Tile last = M1;
+        Tile last = W1;
         Hands hands = new Hands(tiles, last);
         List<Tile> dora = new ArrayList<>(1);
-        dora.add(CHN);
+        dora.add(RED);
 
         List<Tile> uradora = new ArrayList<>(1);
-        uradora.add(M2);
+        uradora.add(W2);
         GeneralSituation general;
-        general = new GeneralSituation(true, false, PEI, dora, uradora);
+        general = new GeneralSituation(true, false, NORTH, dora, uradora);
         PersonalSituation personal;
-        personal = new PersonalSituation(true, false, false, false, false, false, NAN);
+        personal = new PersonalSituation(true, false, false, false, false, false, SOUTH);
 
         player = new Player(hands, general, personal);
         player.calculate();

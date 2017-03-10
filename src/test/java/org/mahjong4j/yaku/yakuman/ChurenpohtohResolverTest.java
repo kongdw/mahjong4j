@@ -19,13 +19,13 @@ public class ChurenpohtohResolverTest {
 
     @Before
     public void setUp() throws Exception {
-        List<Mentsu> list = new ArrayList<>(5);
-        list.add(new Toitsu(M1));
-        list.add(new Shuntsu(false, M2));
-        list.add(new Shuntsu(false, M5));
-        list.add(new Kotsu(false, M9));
-        list.add(new Shuntsu(false, M7));
-        MentsuComp comp = new MentsuComp(list, M1);
+        List<Meld> list = new ArrayList<>(5);
+        list.add(new Pair(W1));
+        list.add(new Sequence(false, W2));
+        list.add(new Sequence(false, W5));
+        list.add(new Triplet(false, W9));
+        list.add(new Sequence(false, W7));
+        MeldDirectory comp = new MeldDirectory(list, W1);
         resolver = new ChurenpohtohResolver(comp);
     }
 

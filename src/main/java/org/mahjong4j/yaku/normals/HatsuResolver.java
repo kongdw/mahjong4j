@@ -1,8 +1,8 @@
 package org.mahjong4j.yaku.normals;
 
 
-import org.mahjong4j.hands.Kotsu;
-import org.mahjong4j.hands.MentsuComp;
+import org.mahjong4j.hands.Triplet;
+import org.mahjong4j.hands.MeldDirectory;
 import org.mahjong4j.tile.Tile;
 
 import java.util.List;
@@ -17,10 +17,10 @@ import static org.mahjong4j.yaku.normals.NormalYaku.HATSU;
  */
 public class HatsuResolver implements NormalYakuResolver {
     private final NormalYaku yakuEnum = HATSU;
-    private final List<Kotsu> kotsuList;
+    private final List<Triplet> tripletList;
 
-    public HatsuResolver(MentsuComp comp) {
-        kotsuList = comp.getKotsuKantsu();
+    public HatsuResolver(MeldDirectory comp) {
+        tripletList = comp.getKotsuKantsu();
     }
 
     public NormalYaku getNormalYaku() {
@@ -28,8 +28,8 @@ public class HatsuResolver implements NormalYakuResolver {
     }
 
     public boolean isMatch() {
-        for (Kotsu kotsu : kotsuList) {
-            if (kotsu.getTile() == Tile.HAT) {
+        for (Triplet triplet : tripletList) {
+            if (triplet.getTile() == Tile.GREEN) {
                 return true;
             }
         }

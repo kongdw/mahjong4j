@@ -3,14 +3,14 @@ package org.mahjong4j.yaku.normals;
 
 import org.mahjong4j.GeneralSituation;
 import org.mahjong4j.PersonalSituation;
-import org.mahjong4j.hands.MentsuComp;
-import org.mahjong4j.hands.Shuntsu;
-import org.mahjong4j.hands.Toitsu;
+import org.mahjong4j.hands.MeldDirectory;
+import org.mahjong4j.hands.Sequence;
+import org.mahjong4j.hands.Pair;
 import org.mahjong4j.tile.Tile;
 
 import java.util.List;
 
-import static org.mahjong4j.tile.TileType.SANGEN;
+import static org.mahjong4j.tile.TileType.DRAGON;
 import static org.mahjong4j.yaku.normals.NormalYaku.PINFU;
 
 /**
@@ -22,17 +22,17 @@ import static org.mahjong4j.yaku.normals.NormalYaku.PINFU;
 public class PinfuResolver extends SituationResolver implements NormalYakuResolver {
     private final NormalYaku yakuEnum = PINFU;
 
-    private final Toitsu janto;
+    private final Pair janto;
     private final int shuntsuCount;
-    private final List<Shuntsu> shuntsuList;
+    private final List<Sequence> sequenceList;
     private final Tile last;
 
 
-    public PinfuResolver(MentsuComp comp, GeneralSituation generalSituation, PersonalSituation personalSituation) {
+    public PinfuResolver(MeldDirectory comp, GeneralSituation generalSituation, PersonalSituation personalSituation) {
         super(generalSituation, personalSituation);
         janto = comp.getJanto();
         shuntsuCount = comp.getShuntsuCount();
-        shuntsuList = comp.getShuntsuList();
+        sequenceList = comp.getSequenceList();
         last = comp.getLast();
     }
 
@@ -46,7 +46,7 @@ public class PinfuResolver extends SituationResolver implements NormalYakuResolv
         }
         //雀頭が三元牌の場合はfalse
         Tile janto = this.janto.getTile();
-        if (janto.getType() == SANGEN) {
+        if (janto.getType() == DRAGON) {
             return false;
         }
 
@@ -60,14 +60,14 @@ public class PinfuResolver extends SituationResolver implements NormalYakuResolv
         }
 
         boolean isRyanmen = false;
-        for (Shuntsu shuntsu : shuntsuList) {
+        for (Sequence sequence : sequenceList) {
             //鳴いていた場合もfalse
-            if (shuntsu.isOpen()) {
+            if (sequence.isOpen()) {
                 return false;
             }
 
             //両面待ちならそれを保存しておく
-            if (isRyanmen(shuntsu, last)) {
+            if (isRyanmen(sequence, last)) {
                 isRyanmen = true;
             }
         }
@@ -79,17 +79,17 @@ public class PinfuResolver extends SituationResolver implements NormalYakuResolv
      * 両面待ちだったかを判定するため
      * 一つ一つの順子と最後の牌について判定する
      *
-     * @param shuntsu 判定したい順子
+     * @param sequence 判定したい順子
      * @param last    最後の牌
      * @return 両面待ちだったか
      */
-    private boolean isRyanmen(Shuntsu shuntsu, Tile last) {
+    private boolean isRyanmen(Sequence sequence, Tile last) {
         //ラスト牌と判定したい順子のtypeが違う場合はfalse
-        if (shuntsu.getTile().getType() != last.getType()) {
+        if (sequence.getTile().getType() != last.getType()) {
             return false;
         }
 
-        int shuntsuNum = shuntsu.getTile().getNumber();
+        int shuntsuNum = sequence.getTile().getNumber();
         int lastNum = last.getNumber();
         if (shuntsuNum == 2 && lastNum == 1) {
             return true;

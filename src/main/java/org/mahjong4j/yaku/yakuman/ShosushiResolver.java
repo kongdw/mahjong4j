@@ -1,12 +1,12 @@
 package org.mahjong4j.yaku.yakuman;
 
-import org.mahjong4j.hands.Kotsu;
-import org.mahjong4j.hands.MentsuComp;
-import org.mahjong4j.hands.Toitsu;
+import org.mahjong4j.hands.Triplet;
+import org.mahjong4j.hands.MeldDirectory;
+import org.mahjong4j.hands.Pair;
 
 import java.util.List;
 
-import static org.mahjong4j.tile.TileType.FONPAI;
+import static org.mahjong4j.tile.TileType.WIND;
 import static org.mahjong4j.yaku.yakuman.Yakuman.SHOSUSHI;
 
 /**
@@ -18,13 +18,13 @@ import static org.mahjong4j.yaku.yakuman.Yakuman.SHOSUSHI;
  */
 public class ShosushiResolver implements YakumanResolver {
     private final Yakuman yakuman = SHOSUSHI;
-    private final Toitsu janto;
-    private final List<Kotsu> kotsuList;
+    private final Pair janto;
+    private final List<Triplet> tripletList;
     private final int kotsuCount;
 
-    public ShosushiResolver(MentsuComp comp) {
+    public ShosushiResolver(MeldDirectory comp) {
         janto = comp.getJanto();
-        kotsuList = comp.getKotsuKantsu();
+        tripletList = comp.getKotsuKantsu();
         kotsuCount = comp.getKotsuCount() + comp.getKantsuCount();
     }
 
@@ -37,7 +37,7 @@ public class ShosushiResolver implements YakumanResolver {
             return false;
         }
 
-        if (janto.getTile().getType() != FONPAI) {
+        if (janto.getTile().getType() != WIND) {
             return false;
         }
         if (kotsuCount < 3) {
@@ -45,8 +45,8 @@ public class ShosushiResolver implements YakumanResolver {
         }
 
         int shosushiCount = 0;
-        for (Kotsu kotsu : kotsuList) {
-            if (kotsu.getTile().getType() == FONPAI) {
+        for (Triplet triplet : tripletList) {
+            if (triplet.getTile().getType() == WIND) {
                 shosushiCount++;
             }
         }

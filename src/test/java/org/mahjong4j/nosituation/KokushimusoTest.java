@@ -11,7 +11,7 @@ import org.mahjong4j.yaku.yakuman.Yakuman;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.mahjong4j.tile.Tile.M1;
+import static org.mahjong4j.tile.Tile.W1;
 import static org.mahjong4j.yaku.yakuman.Yakuman.KOKUSHIMUSO;
 
 /**
@@ -29,7 +29,7 @@ public class KokushimusoTest {
             1, 1, 1, 1,
             1, 2, 1
         };
-        Hands hands = new Hands(match, M1);
+        Hands hands = new Hands(match, W1);
         player = new Player(hands);
         player.calculate();
     }

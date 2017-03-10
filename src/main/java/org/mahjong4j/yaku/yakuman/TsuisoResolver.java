@@ -1,9 +1,9 @@
 package org.mahjong4j.yaku.yakuman;
 
-import org.mahjong4j.hands.Kotsu;
-import org.mahjong4j.hands.MentsuComp;
-import org.mahjong4j.hands.Shuntsu;
-import org.mahjong4j.hands.Toitsu;
+import org.mahjong4j.hands.Triplet;
+import org.mahjong4j.hands.MeldDirectory;
+import org.mahjong4j.hands.Sequence;
+import org.mahjong4j.hands.Pair;
 
 import java.util.List;
 
@@ -18,16 +18,16 @@ import static org.mahjong4j.yaku.yakuman.Yakuman.TSUISO;
 public class TsuisoResolver implements YakumanResolver {
     private final Yakuman yakuman = TSUISO;
 
-    private final Toitsu janto;
-    private final List<Shuntsu> shuntsuList;
-    private final List<Toitsu> toitsuList;
-    private final List<Kotsu> kotsuList;
+    private final Pair janto;
+    private final List<Sequence> sequenceList;
+    private final List<Pair> pairList;
+    private final List<Triplet> tripletList;
 
-    public TsuisoResolver(MentsuComp comp) {
+    public TsuisoResolver(MeldDirectory comp) {
         janto = comp.getJanto();
-        shuntsuList = comp.getShuntsuList();
-        toitsuList = comp.getToitsuList();
-        kotsuList = comp.getKotsuKantsu();
+        sequenceList = comp.getSequenceList();
+        pairList = comp.getPairList();
+        tripletList = comp.getKotsuKantsu();
     }
 
     public Yakuman getYakuman() {
@@ -35,12 +35,12 @@ public class TsuisoResolver implements YakumanResolver {
     }
 
     public boolean isMatch() {
-        if (shuntsuList.size() > 0) {
+        if (sequenceList.size() > 0) {
             return false;
         }
         if (janto == null) {
-            for (Toitsu toitsu : toitsuList) {
-                if (toitsu.getTile().getNumber() != 0) {
+            for (Pair pair : pairList) {
+                if (pair.getTile().getNumber() != 0) {
                     return false;
                 }
             }
@@ -51,8 +51,8 @@ public class TsuisoResolver implements YakumanResolver {
             return false;
         }
 
-        for (Kotsu kotsu : kotsuList) {
-            if (kotsu.getTile().getNumber() != 0) {
+        for (Triplet triplet : tripletList) {
+            if (triplet.getTile().getNumber() != 0) {
                 return false;
             }
         }

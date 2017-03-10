@@ -7,7 +7,7 @@ import org.mahjong4j.tile.Tile;
 import java.util.Set;
 
 import static org.junit.Assert.*;
-import static org.mahjong4j.tile.Tile.M6;
+import static org.mahjong4j.tile.Tile.W6;
 
 /**
  * @author yu1ro
@@ -24,24 +24,24 @@ public class HandsNumOnlyTest {
             0, 0, 0, 0,
             0, 2, 0
         };
-        Tile last = M6;
+        Tile last = W6;
         hands = new Hands(tiles, last);
     }
 
     @Test
     public void testFindMentsu() throws Exception {
-        Set<MentsuComp> winSetList = hands.getMentsuCompSet();
+        Set<MeldDirectory> winSetList = hands.getMeldDirectorySet();
         assertEquals(1, winSetList.size());
     }
 
     @Test
     public void testWinMentsuList() throws Exception {
-        Set<MentsuComp> winSetList = hands.getMentsuCompSet();
-        for (MentsuComp winMentsuSet : winSetList) {
+        Set<MeldDirectory> winSetList = hands.getMeldDirectorySet();
+        for (MeldDirectory winMentsuSet : winSetList) {
             assertEquals(0, winMentsuSet.getKantsuCount());
             assertEquals(0, winMentsuSet.getKotsuCount());
             assertEquals(4, winMentsuSet.getShuntsuCount());
-            assertEquals(Tile.HAT, winMentsuSet.getToitsuList().get(0).getTile());
+            assertEquals(Tile.GREEN, winMentsuSet.getPairList().get(0).getTile());
         }
     }
 
@@ -52,7 +52,7 @@ public class HandsNumOnlyTest {
 
     @Test
     public void testGetLast() throws Exception {
-        assertEquals(M6, hands.getLast());
+        assertEquals(W6, hands.getLast());
     }
 
     @Test

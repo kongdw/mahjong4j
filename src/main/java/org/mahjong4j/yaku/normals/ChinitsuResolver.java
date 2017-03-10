@@ -1,14 +1,14 @@
 package org.mahjong4j.yaku.normals;
 
 
-import org.mahjong4j.hands.Mentsu;
-import org.mahjong4j.hands.MentsuComp;
+import org.mahjong4j.hands.Meld;
+import org.mahjong4j.hands.MeldDirectory;
 import org.mahjong4j.tile.TileType;
 
 import java.util.List;
 
-import static org.mahjong4j.tile.TileType.FONPAI;
-import static org.mahjong4j.tile.TileType.SANGEN;
+import static org.mahjong4j.tile.TileType.WIND;
+import static org.mahjong4j.tile.TileType.DRAGON;
 import static org.mahjong4j.yaku.normals.NormalYaku.CHINITSU;
 
 /**
@@ -19,9 +19,9 @@ import static org.mahjong4j.yaku.normals.NormalYaku.CHINITSU;
  */
 public class ChinitsuResolver implements NormalYakuResolver {
     private final NormalYaku yakuEnum = CHINITSU;
-    private final MentsuComp comp;
+    private final MeldDirectory comp;
 
-    public ChinitsuResolver(MentsuComp comp) {
+    public ChinitsuResolver(MeldDirectory comp) {
         this.comp = comp;
     }
 
@@ -30,15 +30,15 @@ public class ChinitsuResolver implements NormalYakuResolver {
     }
 
     public boolean isMatch() {
-        List<Mentsu> allMentsu = comp.getAllMentsu();
-        TileType firstType = allMentsu.get(0).getTile().getType();
+        List<Meld> allMeld = comp.getAllMentsu();
+        TileType firstType = allMeld.get(0).getTile().getType();
 
-        if (firstType == FONPAI || firstType == SANGEN) {
+        if (firstType == WIND || firstType == DRAGON) {
             return false;
         }
 
-        for (Mentsu mentsu : allMentsu) {
-            TileType checkType = mentsu.getTile().getType();
+        for (Meld meld : allMeld) {
+            TileType checkType = meld.getTile().getType();
             if (firstType != checkType) {
                 return false;
             }

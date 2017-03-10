@@ -1,8 +1,8 @@
 package org.mahjong4j.yaku.normals;
 
 
-import org.mahjong4j.hands.Mentsu;
-import org.mahjong4j.hands.MentsuComp;
+import org.mahjong4j.hands.Meld;
+import org.mahjong4j.hands.MeldDirectory;
 import org.mahjong4j.tile.TileType;
 
 import java.util.List;
@@ -18,13 +18,13 @@ import static org.mahjong4j.yaku.normals.NormalYaku.HONITSU;
 public class HonitsuResolver implements NormalYakuResolver {
     private final NormalYaku yakuEnum = HONITSU;
 
-    private List<Mentsu> allMentsu;
+    private List<Meld> allMeld;
 
     private boolean hasJihai = false;
     private TileType type = null;
 
-    public HonitsuResolver(MentsuComp comp) {
-        allMentsu = comp.getAllMentsu();
+    public HonitsuResolver(MeldDirectory comp) {
+        allMeld = comp.getAllMentsu();
     }
 
     public NormalYaku getNormalYaku() {
@@ -32,8 +32,8 @@ public class HonitsuResolver implements NormalYakuResolver {
     }
 
     public boolean isMatch() {
-        for (Mentsu mentsu : allMentsu) {
-            if (!hasOnlyOneType(mentsu)) {
+        for (Meld meld : allMeld) {
+            if (!hasOnlyOneType(meld)) {
                 return false;
             }
         }
@@ -41,12 +41,12 @@ public class HonitsuResolver implements NormalYakuResolver {
         return hasJihai;
     }
 
-    private boolean hasOnlyOneType(Mentsu mentsu) {
-        if (mentsu.getTile().getNumber() == 0) {
+    private boolean hasOnlyOneType(Meld meld) {
+        if (meld.getTile().getNumber() == 0) {
             hasJihai = true;
         } else if (type == null) {
-            type = mentsu.getTile().getType();
-        } else if (type != mentsu.getTile().getType()) {
+            type = meld.getTile().getType();
+        } else if (type != meld.getTile().getType()) {
             return false;
         }
         return true;

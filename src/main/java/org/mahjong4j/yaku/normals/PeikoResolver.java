@@ -1,6 +1,6 @@
 package org.mahjong4j.yaku.normals;
 
-import org.mahjong4j.hands.Shuntsu;
+import org.mahjong4j.hands.Sequence;
 
 import java.util.List;
 
@@ -8,38 +8,38 @@ import java.util.List;
  * @author yu1ro
  */
 public abstract class PeikoResolver implements NormalYakuResolver {
-    protected int peiko(List<Shuntsu> shuntsuList) {
-        if (shuntsuList.size() < 2) {
+    protected int peiko(List<Sequence> sequenceList) {
+        if (sequenceList.size() < 2) {
             return 0;
         }
 
-        Shuntsu stockOne = null;
-        Shuntsu stockTwo = null;
+        Sequence stockOne = null;
+        Sequence stockTwo = null;
 
         int peiko = 0;
-        for (Shuntsu shuntsu : shuntsuList) {
+        for (Sequence sequence : sequenceList) {
             //鳴いている場合はfalse
-            if (shuntsu.isOpen()) {
+            if (sequence.isOpen()) {
                 return 0;
             }
 
             if (stockOne == null) {
-                stockOne = shuntsu;
+                stockOne = sequence;
                 continue;
             }
 
             //１つ目の盃口が見つかった
-            if (stockOne.equals(shuntsu) && peiko == 0) {
+            if (stockOne.equals(sequence) && peiko == 0) {
                 peiko = 1;
                 continue;
             }
 
             if (stockTwo == null) {
-                stockTwo = shuntsu;
+                stockTwo = sequence;
                 continue;
             }
 
-            if (stockTwo.equals(shuntsu)) {
+            if (stockTwo.equals(sequence)) {
                 return 2;
             }
         }

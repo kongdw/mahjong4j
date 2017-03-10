@@ -36,17 +36,17 @@ public class JikazeBakazeDora3Test {
             0, 3, 0, 0,
             0, 0, 2
         };
-        Tile last = S7;
+        Tile last = T7;
         Hands hands = new Hands(tiles, last);
         List<Tile> dora = new ArrayList<>(1);
-        dora.add(NAN);
+        dora.add(SOUTH);
 
         List<Tile> uradora = new ArrayList<>(1);
-        uradora.add(M9);
+        uradora.add(W9);
         GeneralSituation general;
-        general = new GeneralSituation(false, false, NAN, dora, uradora);
+        general = new GeneralSituation(false, false, SOUTH, dora, uradora);
         PersonalSituation personal;
-        personal = new PersonalSituation(false, false, false, false, false, false, SHA);
+        personal = new PersonalSituation(false, false, false, false, false, false, WEST);
 
         player = new Player(hands, general, personal);
         player.calculate();

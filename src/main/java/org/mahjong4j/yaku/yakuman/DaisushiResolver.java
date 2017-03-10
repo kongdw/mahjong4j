@@ -1,7 +1,7 @@
 package org.mahjong4j.yaku.yakuman;
 
-import org.mahjong4j.hands.Kotsu;
-import org.mahjong4j.hands.MentsuComp;
+import org.mahjong4j.hands.Triplet;
+import org.mahjong4j.hands.MeldDirectory;
 import org.mahjong4j.tile.TileType;
 
 import java.util.List;
@@ -17,10 +17,10 @@ import static org.mahjong4j.yaku.yakuman.Yakuman.DAISUSHI;
 public class DaisushiResolver implements YakumanResolver {
     private final Yakuman yakuman = DAISUSHI;
 
-    private final List<Kotsu> kotsuList;
+    private final List<Triplet> tripletList;
 
-    public DaisushiResolver(MentsuComp comp) {
-        kotsuList = comp.getKotsuKantsu();
+    public DaisushiResolver(MeldDirectory comp) {
+        tripletList = comp.getKotsuKantsu();
     }
 
     public Yakuman getYakuman() {
@@ -29,8 +29,8 @@ public class DaisushiResolver implements YakumanResolver {
 
     public boolean isMatch() {
         int fonpaiCount = 0;
-        for (Kotsu kotsu : kotsuList) {
-            if (kotsu.getTile().getType() == TileType.FONPAI) {
+        for (Triplet triplet : tripletList) {
+            if (triplet.getTile().getType() == TileType.WIND) {
                 fonpaiCount++;
             }
         }

@@ -1,7 +1,7 @@
 package org.mahjong4j.yaku.normals;
 
 
-import org.mahjong4j.hands.MentsuComp;
+import org.mahjong4j.hands.MeldDirectory;
 
 import static org.mahjong4j.yaku.normals.NormalYaku.SANKANTSU;
 
@@ -15,7 +15,7 @@ public class SankantsuResolver implements NormalYakuResolver {
     private final NormalYaku yakuEnum = SANKANTSU;
     private final int kantsuCount;
 
-    public SankantsuResolver(MentsuComp comp) {
+    public SankantsuResolver(MeldDirectory comp) {
         kantsuCount = comp.getKantsuCount();
     }
 

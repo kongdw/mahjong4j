@@ -6,7 +6,7 @@ import org.mahjong4j.GeneralSituation;
 import org.mahjong4j.PersonalSituation;
 import org.mahjong4j.Player;
 import org.mahjong4j.hands.Hands;
-import org.mahjong4j.hands.Kantsu;
+import org.mahjong4j.hands.Kong;
 import org.mahjong4j.tile.Tile;
 import org.mahjong4j.yaku.normals.NormalYaku;
 import org.mahjong4j.yaku.yakuman.Yakuman;
@@ -36,18 +36,18 @@ public class JikazeTest {
             0, 3, 0, 0,
             0, 0, 0
         };
-        Tile last = P7;
+        Tile last = D7;
 
-        Hands hands = new Hands(tiles, last, new Kantsu(false, PEI));
+        Hands hands = new Hands(tiles, last, new Kong(false, NORTH));
 
         List<Tile> dora = new ArrayList<>(1);
-        dora.add(CHN);
+        dora.add(RED);
         List<Tile> uradora = new ArrayList<>(1);
-        uradora.add(HAK);
+        uradora.add(WHITE);
         GeneralSituation general;
-        general = new GeneralSituation(false, false, SHA, dora, uradora);
+        general = new GeneralSituation(false, false, WEST, dora, uradora);
         PersonalSituation personal;
-        personal = new PersonalSituation(false, false, false, false, false, false, NAN);
+        personal = new PersonalSituation(false, false, false, false, false, false, SOUTH);
 
         player = new Player(hands, general, personal);
         player.calculate();

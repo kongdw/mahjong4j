@@ -20,7 +20,7 @@ public class Hands {
     // -------------------------確定系-----------------------
 
     //確定した上がりの形のリスト
-    private Set<MentsuComp> mentsuCompSet = new HashSet<>();
+    private Set<MeldDirectory> meldDirectorySet = new HashSet<>();
 
     //確定した各牌の数一覧
     private int[] handsComp = new int[34];
@@ -37,7 +37,7 @@ public class Hands {
     // ------------------------ストック系----------------------
 
     // コンストラクタで入力された面子リスト
-    private List<Mentsu> inputtedMentsuList = new ArrayList<>();
+    private List<Meld> inputtedMeldList = new ArrayList<>();
 
     // 操作する用のストック
     private int[] handStocks = new int[34];
@@ -49,28 +49,28 @@ public class Hands {
     /**
      * @param otherTiles
      * @param last
-     * @param mentsuList
+     * @param meldList
      * @throws MahjongTileOverFlowException
      */
-    public Hands(int[] otherTiles, Tile last, List<Mentsu> mentsuList) throws MahjongTileOverFlowException, IllegalMentsuSizeException {
+    public Hands(int[] otherTiles, Tile last, List<Meld> meldList) throws MahjongTileOverFlowException, IllegalMentsuSizeException {
         inputtedTiles = otherTiles;
         this.last = last;
-        inputtedMentsuList = mentsuList;
-        setHandsComp(otherTiles, mentsuList);
+        inputtedMeldList = meldList;
+        setHandsComp(otherTiles, meldList);
         findMentsu();
     }
 
     /**
      * @param otherTiles
      * @param last
-     * @param mentsu
+     * @param meld
      * @throws MahjongTileOverFlowException
      */
-    public Hands(int[] otherTiles, Tile last, Mentsu... mentsu) throws MahjongTileOverFlowException, IllegalMentsuSizeException {
+    public Hands(int[] otherTiles, Tile last, Meld... meld) throws MahjongTileOverFlowException, IllegalMentsuSizeException {
         inputtedTiles = otherTiles;
-        setHandsComp(otherTiles, Arrays.asList(mentsu));
+        setHandsComp(otherTiles, Arrays.asList(meld));
         this.last = last;
-        Collections.addAll(inputtedMentsuList, mentsu);
+        Collections.addAll(inputtedMeldList, meld);
         findMentsu();
     }
 
@@ -95,33 +95,33 @@ public class Hands {
      * 面子を各牌の数に変換します
      *
      * @param otherTiles 各牌の数
-     * @param mentsuList 面子のリスト
+     * @param meldList 面子のリスト
      */
-    private void setHandsComp(int[] otherTiles, List<Mentsu> mentsuList) {
+    private void setHandsComp(int[] otherTiles, List<Meld> meldList) {
         System.arraycopy(otherTiles, 0, handsComp, 0, otherTiles.length);
-        for (Mentsu mentsu : mentsuList) {
-            int code = mentsu.getTile().getCode();
+        for (Meld meld : meldList) {
+            int code = meld.getTile().getCode();
 
-            if (mentsu.isOpen()) {
+            if (meld.isOpen()) {
                 isOpen = true;
             }
 
-            if (mentsu instanceof Shuntsu) {
+            if (meld instanceof Sequence) {
                 handsComp[code - 1] += 1;
                 handsComp[code] += 1;
                 handsComp[code + 1] += 1;
-            } else if (mentsu instanceof Kotsu) {
+            } else if (meld instanceof Triplet) {
                 handsComp[code] += 3;
-            } else if (mentsu instanceof Kantsu) {
+            } else if (meld instanceof Kong) {
                 handsComp[code] += 4;
-            } else if (mentsu instanceof Toitsu) {
+            } else if (meld instanceof Pair) {
                 handsComp[code] += 2;
             }
         }
     }
 
-    public Set<MentsuComp> getMentsuCompSet() {
-        return mentsuCompSet;
+    public Set<MeldDirectory> getMeldDirectorySet() {
+        return meldDirectorySet;
     }
 
     public boolean getCanWin() {
@@ -175,29 +175,29 @@ public class Hands {
 
         // 雀頭の候補を探してストックしておく
         initStock();
-        List<Toitsu> toitsuList = Toitsu.findJantoCandidate(handStocks);
+        List<Pair> pairList = Pair.findJantoCandidate(handStocks);
 
         // 雀頭が一つも見つからなければfalse
-        if (toitsuList.size() == 0) {
+        if (pairList.size() == 0) {
             canWin = false;
             return;
         }
 
         //七対子なら保存しておく
-        if (toitsuList.size() == 7) {
+        if (pairList.size() == 7) {
             canWin = true;
-            List<Mentsu> mentsuList = new ArrayList<>(7);
-            mentsuList.addAll(toitsuList);
-            MentsuComp comp = new MentsuComp(mentsuList, last);
-            mentsuCompSet.add(comp);
+            List<Meld> meldList = new ArrayList<>(7);
+            meldList.addAll(pairList);
+            MeldDirectory comp = new MeldDirectory(meldList, last);
+            meldDirectorySet.add(comp);
         }
 
         // その他の判定
         //雀頭候補から探す
-        List<Mentsu> winCandidate = new ArrayList<>(4);
-        for (Toitsu toitsu : toitsuList) {
+        List<Meld> winCandidate = new ArrayList<>(4);
+        for (Pair pair : pairList) {
             // 操作変数を初期化
-            init(winCandidate, toitsu);
+            init(winCandidate, pair);
 
             //刻子優先検索
             //検索
@@ -206,7 +206,7 @@ public class Hands {
             //全て0かチェック
             convertToMentsuComp(winCandidate);
 
-            init(winCandidate, toitsu);
+            init(winCandidate, pair);
             //順子優先検索
             winCandidate.addAll(findShuntsuCandidate());
             winCandidate.addAll(findKotsuCandidate());
@@ -236,15 +236,15 @@ public class Hands {
      * 雀頭の分をストックから減らします
      *
      * @param winCandidate 面子の候補
-     * @param toitsu       この検索サイクルの雀頭候補
+     * @param pair       この検索サイクルの雀頭候補
      */
-    private void init(List<Mentsu> winCandidate, Toitsu toitsu) {
+    private void init(List<Meld> winCandidate, Pair pair) {
         // 操作変数を初期化
         initStock();
         winCandidate.clear();
         //ストックから雀頭を減らす
-        handStocks[toitsu.getTile().getCode()] -= 2;
-        winCandidate.add(toitsu);
+        handStocks[pair.getTile().getCode()] -= 2;
+        winCandidate.add(pair);
     }
 
     /**
@@ -254,14 +254,14 @@ public class Hands {
      *
      * @param winCandidate mentsuCompに代入するかもしれない
      */
-    private void convertToMentsuComp(List<Mentsu> winCandidate) throws IllegalMentsuSizeException {
+    private void convertToMentsuComp(List<Meld> winCandidate) throws IllegalMentsuSizeException {
         //全て0かチェック
         if (isAllZero(handStocks)) {
             canWin = true;
-            winCandidate.addAll(inputtedMentsuList);
-            MentsuComp mentsuComp = new MentsuComp(winCandidate, last);
-            if (!mentsuCompSet.contains(mentsuComp)) {
-                mentsuCompSet.add(mentsuComp);
+            winCandidate.addAll(inputtedMeldList);
+            MeldDirectory meldDirectory = new MeldDirectory(winCandidate, last);
+            if (!meldDirectorySet.contains(meldDirectory)) {
+                meldDirectorySet.add(meldDirectory);
             }
         }
     }
@@ -281,13 +281,13 @@ public class Hands {
         return true;
     }
 
-    private List<Mentsu> findShuntsuCandidate() {
-        List<Mentsu> resultList = new ArrayList<>(4);
+    private List<Meld> findShuntsuCandidate() {
+        List<Meld> resultList = new ArrayList<>(4);
         //字牌などはチェックしないので26まで
         for (int j = 1; j < 26; j++) {
             // whileにしたのは一盃口などがあるから
             while (handStocks[j - 1] > 0 && handStocks[j] > 0 && handStocks[j + 1] > 0) {
-                Shuntsu shuntsu = new Shuntsu(
+                Sequence sequence = new Sequence(
                     false,
                     Tile.valueOf(j - 1),
                     Tile.valueOf(j),
@@ -295,8 +295,8 @@ public class Hands {
                 );
 
                 //3つ並んでいても順子であるとは限らないので調べる
-                if (shuntsu.isMentsu()) {
-                    resultList.add(shuntsu);
+                if (sequence.isMeld()) {
+                    resultList.add(sequence);
                     handStocks[j - 1]--;
                     handStocks[j]--;
                     handStocks[j + 1]--;
@@ -306,11 +306,11 @@ public class Hands {
         return resultList;
     }
 
-    private List<Mentsu> findKotsuCandidate() {
-        List<Mentsu> resultList = new ArrayList<>(4);
+    private List<Meld> findKotsuCandidate() {
+        List<Meld> resultList = new ArrayList<>(4);
         for (int i = 0; i < handStocks.length; i++) {
             if (handStocks[i] >= 3) {
-                resultList.add(new Kotsu(false, Tile.valueOf(i)));
+                resultList.add(new Triplet(false, Tile.valueOf(i)));
                 handStocks[i] -= 3;
             }
         }

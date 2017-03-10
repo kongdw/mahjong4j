@@ -26,24 +26,24 @@ public class HandsChitoitsuTest {
             0, 0, 0
         };
 
-        actual = new Hands(tiles, SHA);
+        actual = new Hands(tiles, WEST);
     }
 
     @Test
     public void testGetMentsuCompList() throws Exception {
-        List<Mentsu> expectedList = new ArrayList<>(7);
-        expectedList.add(new Toitsu(M4));
-        expectedList.add(new Toitsu(SHA));
-        expectedList.add(new Toitsu(M2));
-        expectedList.add(new Toitsu(M1));
-        expectedList.add(new Toitsu(M7));
-        expectedList.add(new Toitsu(S3));
-        expectedList.add(new Toitsu(M5));
+        List<Meld> expectedList = new ArrayList<>(7);
+        expectedList.add(new Pair(W4));
+        expectedList.add(new Pair(WEST));
+        expectedList.add(new Pair(W2));
+        expectedList.add(new Pair(W1));
+        expectedList.add(new Pair(W7));
+        expectedList.add(new Pair(T3));
+        expectedList.add(new Pair(W5));
 
-        MentsuComp expected = new MentsuComp(expectedList, SHA);
+        MeldDirectory expected = new MeldDirectory(expectedList, WEST);
 
-        assertEquals(1, actual.getMentsuCompSet().size());
-        assertThat(actual.getMentsuCompSet(), hasItems(expected));
+        assertEquals(1, actual.getMeldDirectorySet().size());
+        assertThat(actual.getMeldDirectorySet(), hasItems(expected));
     }
 
     @Test
@@ -53,7 +53,7 @@ public class HandsChitoitsuTest {
 
     @Test
     public void testGetLast() throws Exception {
-        assertEquals(SHA, actual.getLast());
+        assertEquals(WEST, actual.getLast());
     }
 
     @Test

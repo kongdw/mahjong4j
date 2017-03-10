@@ -1,9 +1,9 @@
 package org.mahjong4j.yaku.yakuman;
 
-import org.mahjong4j.hands.Kotsu;
-import org.mahjong4j.hands.MentsuComp;
-import org.mahjong4j.hands.Shuntsu;
-import org.mahjong4j.hands.Toitsu;
+import org.mahjong4j.hands.Triplet;
+import org.mahjong4j.hands.MeldDirectory;
+import org.mahjong4j.hands.Sequence;
+import org.mahjong4j.hands.Pair;
 import org.mahjong4j.tile.Tile;
 
 import java.util.List;
@@ -20,14 +20,14 @@ import static org.mahjong4j.yaku.yakuman.Yakuman.RYUISO;
  */
 public class RyuisoResolver implements YakumanResolver {
     private final Yakuman yakuman = RYUISO;
-    private final List<Toitsu> toitsuList;
-    private final List<Shuntsu> shuntsuList;
-    private final List<Kotsu> kotsuList;
+    private final List<Pair> pairList;
+    private final List<Sequence> sequenceList;
+    private final List<Triplet> tripletList;
 
-    public RyuisoResolver(MentsuComp hands) {
-        toitsuList = hands.getToitsuList();
-        shuntsuList = hands.getShuntsuList();
-        kotsuList = hands.getKotsuKantsu();
+    public RyuisoResolver(MeldDirectory hands) {
+        pairList = hands.getPairList();
+        sequenceList = hands.getSequenceList();
+        tripletList = hands.getKotsuKantsu();
     }
 
     public Yakuman getYakuman() {
@@ -35,19 +35,19 @@ public class RyuisoResolver implements YakumanResolver {
     }
 
     public boolean isMatch() {
-        for (Toitsu toitsu : toitsuList) {
-            if (!isGreen(toitsu.getTile())) {
+        for (Pair pair : pairList) {
+            if (!isGreen(pair.getTile())) {
                 return false;
             }
         }
-        for (Kotsu kotsu : kotsuList) {
-            if (!isGreen(kotsu.getTile())) {
+        for (Triplet triplet : tripletList) {
+            if (!isGreen(triplet.getTile())) {
                 return false;
             }
         }
 
-        for (Shuntsu shuntsu : shuntsuList) {
-            if (shuntsu.getTile() != S3) {
+        for (Sequence sequence : sequenceList) {
+            if (sequence.getTile() != T3) {
                 return false;
             }
         }
@@ -60,11 +60,11 @@ public class RyuisoResolver implements YakumanResolver {
      * @return 緑の牌かどうか
      */
     private boolean isGreen(Tile tile) {
-        return tile == HAT
-            || tile == S2
-            || tile == S3
-            || tile == S4
-            || tile == S6
-            || tile == S8;
+        return tile == GREEN
+            || tile == T2
+            || tile == T3
+            || tile == T4
+            || tile == T6
+            || tile == T8;
     }
 }

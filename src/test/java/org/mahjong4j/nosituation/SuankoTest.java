@@ -31,7 +31,7 @@ public class SuankoTest {
             0, 0, 0, 0,
             0, 0, 0
         };
-        Tile last = Tile.M6;
+        Tile last = Tile.W6;
         hands = new Hands(tiles, last);
         player = new Player(hands);
         player.calculate();

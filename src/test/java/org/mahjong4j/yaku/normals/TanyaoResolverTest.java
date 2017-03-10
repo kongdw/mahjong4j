@@ -20,13 +20,13 @@ public class TanyaoResolverTest {
 
     @Before
     public void setUp() throws Exception {
-        List<Mentsu> list = new ArrayList<>(5);
-        list.add(new Toitsu(M3));
-        list.add(new Kantsu(false, S4));
-        list.add(new Shuntsu(true, P7));
-        list.add(new Shuntsu(false, M3));
-        list.add(new Kotsu(true, P2));
-        MentsuComp comp = new MentsuComp(list, P2);
+        List<Meld> list = new ArrayList<>(5);
+        list.add(new Pair(W3));
+        list.add(new Kong(false, T4));
+        list.add(new Sequence(true, D7));
+        list.add(new Sequence(false, W3));
+        list.add(new Triplet(true, D2));
+        MeldDirectory comp = new MeldDirectory(list, D2);
         resolver = new TanyaoResolver(comp);
     }
 

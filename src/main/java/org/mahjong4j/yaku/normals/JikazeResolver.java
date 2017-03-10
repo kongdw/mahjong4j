@@ -2,16 +2,16 @@ package org.mahjong4j.yaku.normals;
 
 import org.mahjong4j.GeneralSituation;
 import org.mahjong4j.PersonalSituation;
-import org.mahjong4j.hands.Kotsu;
-import org.mahjong4j.hands.MentsuComp;
+import org.mahjong4j.hands.Triplet;
+import org.mahjong4j.hands.MeldDirectory;
 
 /**
  * @author yu1ro
  */
 public class JikazeResolver extends SituationResolver implements NormalYakuResolver {
-    private final MentsuComp comp;
+    private final MeldDirectory comp;
 
-    public JikazeResolver(MentsuComp comp, GeneralSituation generalSituation, PersonalSituation personalSituation) {
+    public JikazeResolver(MeldDirectory comp, GeneralSituation generalSituation, PersonalSituation personalSituation) {
         super(generalSituation, personalSituation);
         this.comp = comp;
     }
@@ -26,8 +26,8 @@ public class JikazeResolver extends SituationResolver implements NormalYakuResol
         if (isSituationsNull()) {
             return false;
         }
-        for (Kotsu kotsu : comp.getKotsuKantsu()) {
-            if (kotsu.getTile() == personalSituation.getJikaze()) {
+        for (Triplet triplet : comp.getKotsuKantsu()) {
+            if (triplet.getTile() == personalSituation.getJikaze()) {
                 return true;
             }
         }

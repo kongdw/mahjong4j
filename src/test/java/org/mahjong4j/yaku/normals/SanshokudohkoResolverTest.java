@@ -20,13 +20,13 @@ public class SanshokudohkoResolverTest {
 
     @Before
     public void setUp() throws Exception {
-        List<Mentsu> list = new ArrayList<>(5);
-        list.add(new Toitsu(CHN));
-        list.add(new Kantsu(false, M3));
-        list.add(new Kantsu(false, S3));
-        list.add(new Kantsu(false, P3));
-        list.add(new Kotsu(true, HAK));
-        MentsuComp comp = new MentsuComp(list, HAT);
+        List<Meld> list = new ArrayList<>(5);
+        list.add(new Pair(RED));
+        list.add(new Kong(false, W3));
+        list.add(new Kong(false, T3));
+        list.add(new Kong(false, D3));
+        list.add(new Triplet(true, WHITE));
+        MeldDirectory comp = new MeldDirectory(list, GREEN);
         resolver = new SanshokudohkoResolver(comp);
     }
 

@@ -2,10 +2,10 @@ package org.mahjong4j.yaku.normals;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mahjong4j.hands.Mentsu;
-import org.mahjong4j.hands.MentsuComp;
-import org.mahjong4j.hands.Shuntsu;
-import org.mahjong4j.hands.Toitsu;
+import org.mahjong4j.hands.Meld;
+import org.mahjong4j.hands.MeldDirectory;
+import org.mahjong4j.hands.Sequence;
+import org.mahjong4j.hands.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +22,13 @@ public class IkkitsukanResolverTest {
 
     @Before
     public void setUp() throws Exception {
-        List<Mentsu> mentsu = new ArrayList<>(5);
-        mentsu.add(new Toitsu(M3));
-        mentsu.add(new Shuntsu(true, S4));
-        mentsu.add(new Shuntsu(false, P2));
-        mentsu.add(new Shuntsu(false, P8));
-        mentsu.add(new Shuntsu(true, P5));
-        MentsuComp comp = new MentsuComp(mentsu, P3);
+        List<Meld> meld = new ArrayList<>(5);
+        meld.add(new Pair(W3));
+        meld.add(new Sequence(true, T4));
+        meld.add(new Sequence(false, D2));
+        meld.add(new Sequence(false, D8));
+        meld.add(new Sequence(true, D5));
+        MeldDirectory comp = new MeldDirectory(meld, D3);
         resolver = new IkkitsukanResolver(comp);
     }
 

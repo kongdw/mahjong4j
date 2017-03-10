@@ -8,7 +8,7 @@ import org.mahjong4j.tile.Tile;
  *
  * @author yu1ro
  */
-public class Kantsu extends Mentsu {
+public class Kong extends Meld {
 
     /**
      * 槓子が完成していることを前提にしているため
@@ -17,10 +17,10 @@ public class Kantsu extends Mentsu {
      * @param isOpen         暗槓の場合false, 明槓の場合はtrueを入れて下さい
      * @param identifierTile どの牌の槓子なのか
      */
-    public Kantsu(boolean isOpen, Tile identifierTile) {
+    public Kong(boolean isOpen, Tile identifierTile) {
         this.isOpen = isOpen;
         this.identifierTile = identifierTile;
-        this.isMentsu = true;
+        this.isMeld = true;
     }
 
     /**
@@ -33,9 +33,9 @@ public class Kantsu extends Mentsu {
      * @param tile3  3枚目
      * @param tile4  4枚目
      */
-    public Kantsu(boolean isOpen, Tile tile1, Tile tile2, Tile tile3, Tile tile4) {
+    public Kong(boolean isOpen, Tile tile1, Tile tile2, Tile tile3, Tile tile4) {
         this.isOpen = isOpen;
-        if (this.isMentsu = check(tile1, tile2, tile3, tile4)) {
+        if (this.isMeld = check(tile1, tile2, tile3, tile4)) {
             identifierTile = tile1;
         }
     }
@@ -68,20 +68,20 @@ public class Kantsu extends Mentsu {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Kantsu)) return false;
+        if (!(o instanceof Kong)) return false;
 
-        Kantsu kantsu = (Kantsu) o;
+        Kong kong = (Kong) o;
 
-        if (isMentsu != kantsu.isMentsu) return false;
-        if (isOpen != kantsu.isOpen) return false;
-        return identifierTile == kantsu.identifierTile;
+        if (isMeld != kong.isMeld) return false;
+        if (isOpen != kong.isOpen) return false;
+        return identifierTile == kong.identifierTile;
 
     }
 
     @Override
     public int hashCode() {
         int result = identifierTile != null ? identifierTile.hashCode() : 0;
-        result = 31 * result + (isMentsu ? 1 : 0);
+        result = 31 * result + (isMeld ? 1 : 0);
         result = 31 * result + (isOpen ? 1 : 0);
         return result;
     }

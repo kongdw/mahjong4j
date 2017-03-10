@@ -38,17 +38,17 @@ public class PinfuTsumoTest {
             0, 0, 0, 0,
             0, 0, 0
         };
-        Tile last = M3;
+        Tile last = W3;
         hands = new Hands(tiles, last);
         List<Tile> dora = new ArrayList<>(1);
-        dora.add(NAN);
+        dora.add(SOUTH);
 
         List<Tile> uradora = new ArrayList<>(1);
-        uradora.add(M9);
+        uradora.add(W9);
         GeneralSituation general;
-        general = new GeneralSituation(false, false, NAN, dora, uradora);
+        general = new GeneralSituation(false, false, SOUTH, dora, uradora);
         PersonalSituation personal;
-        personal = new PersonalSituation(true, false, false, false, false, false, TON);
+        personal = new PersonalSituation(true, false, false, false, false, false, EAST);
 
         player = new Player(hands, general, personal);
         player.calculate();

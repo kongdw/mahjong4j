@@ -19,14 +19,14 @@ public class ChinitsuResolverTest {
 
     @Before
     public void setUp() throws Exception {
-        List<Mentsu> mentsuList = new ArrayList<>(5);
-        mentsuList.add(new Toitsu(S3));
-        mentsuList.add(new Shuntsu(true, S2));
-        mentsuList.add(new Shuntsu(false, S3));
-        mentsuList.add(new Kotsu(false, S7));
-        mentsuList.add(new Kantsu(true, S9));
+        List<Meld> meldList = new ArrayList<>(5);
+        meldList.add(new Pair(T3));
+        meldList.add(new Sequence(true, T2));
+        meldList.add(new Sequence(false, T3));
+        meldList.add(new Triplet(false, T7));
+        meldList.add(new Kong(true, T9));
 
-        MentsuComp comp = new MentsuComp(mentsuList, S2);
+        MeldDirectory comp = new MeldDirectory(meldList, T2);
         chinitsuResolver = new ChinitsuResolver(comp);
     }
 

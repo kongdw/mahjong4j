@@ -1,6 +1,6 @@
 package org.mahjong4j;
 
-import org.mahjong4j.hands.MentsuComp;
+import org.mahjong4j.hands.MeldDirectory;
 import org.mahjong4j.yaku.normals.*;
 import org.mahjong4j.yaku.yakuman.*;
 
@@ -13,7 +13,7 @@ import java.util.Set;
  * @author yu1ro
  */
 public class Mahjong4jYakuConfig {
-    public static Set<YakumanResolver> getYakumanResolverSet(MentsuComp comp, GeneralSituation generalSituation, PersonalSituation personalSituation) {
+    public static Set<YakumanResolver> getYakumanResolverSet(MeldDirectory comp, GeneralSituation generalSituation, PersonalSituation personalSituation) {
         // KOKUSHIMUSO is not
         Set<YakumanResolver> yakumanResolverSet = new HashSet<>(9);
         yakumanResolverSet.add(new ChinrohtohResolver(comp));
@@ -33,7 +33,7 @@ public class Mahjong4jYakuConfig {
         return yakumanResolverSet;
     }
 
-    public static Set<NormalYakuResolver> getNormalYakuResolverSet(MentsuComp comp, GeneralSituation generalSituation, PersonalSituation personalSituation) {
+    public static Set<NormalYakuResolver> getNormalYakuResolverSet(MeldDirectory comp, GeneralSituation generalSituation, PersonalSituation personalSituation) {
         Set<NormalYakuResolver> normalYakuResolverSet = new HashSet<>(20);
         normalYakuResolverSet.add(new ChantaResolver(comp));
         normalYakuResolverSet.add(new ChunResolver(comp));

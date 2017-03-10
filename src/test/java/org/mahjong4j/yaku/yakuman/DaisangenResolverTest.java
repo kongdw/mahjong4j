@@ -19,13 +19,13 @@ public class DaisangenResolverTest {
 
     @Before
     public void setUp() throws Exception {
-        List<Mentsu> list = new ArrayList<>(5);
-        list.add(new Toitsu(M1));
-        list.add(new Shuntsu(true, S3));
-        list.add(new Kotsu(true, CHN));
-        list.add(new Kotsu(true, HAK));
-        list.add(new Kantsu(false, HAT));
-        MentsuComp comp = new MentsuComp(list, HAK);
+        List<Meld> list = new ArrayList<>(5);
+        list.add(new Pair(W1));
+        list.add(new Sequence(true, T3));
+        list.add(new Triplet(true, RED));
+        list.add(new Triplet(true, WHITE));
+        list.add(new Kong(false, GREEN));
+        MeldDirectory comp = new MeldDirectory(list, WHITE);
         resolver = new DaisangenResolver(comp);
     }
 

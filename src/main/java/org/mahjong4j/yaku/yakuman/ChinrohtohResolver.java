@@ -1,8 +1,8 @@
 package org.mahjong4j.yaku.yakuman;
 
-import org.mahjong4j.hands.Kotsu;
-import org.mahjong4j.hands.MentsuComp;
-import org.mahjong4j.hands.Toitsu;
+import org.mahjong4j.hands.Triplet;
+import org.mahjong4j.hands.MeldDirectory;
+import org.mahjong4j.hands.Pair;
 
 import java.util.List;
 
@@ -17,12 +17,12 @@ import static org.mahjong4j.yaku.yakuman.Yakuman.CHINROTO;
 public class ChinrohtohResolver implements YakumanResolver {
     private final Yakuman yakuman = CHINROTO;
     private final int totalKotsuKantsu;
-    private final List<Kotsu> kotsuList;
-    private final Toitsu janto;
+    private final List<Triplet> tripletList;
+    private final Pair janto;
 
-    public ChinrohtohResolver(MentsuComp comp) {
+    public ChinrohtohResolver(MeldDirectory comp) {
         totalKotsuKantsu = comp.getKotsuCount() + comp.getKantsuCount();
-        kotsuList = comp.getKotsuKantsu();
+        tripletList = comp.getKotsuKantsu();
         janto = comp.getJanto();
     }
 
@@ -46,8 +46,8 @@ public class ChinrohtohResolver implements YakumanResolver {
         }
 
         //刻子が全て一九牌か
-        for (Kotsu kotsu : kotsuList) {
-            tileNum = kotsu.getTile().getNumber();
+        for (Triplet triplet : tripletList) {
+            tileNum = triplet.getTile().getNumber();
             if (tileNum != 1 && tileNum != 9) {
                 return false;
             }

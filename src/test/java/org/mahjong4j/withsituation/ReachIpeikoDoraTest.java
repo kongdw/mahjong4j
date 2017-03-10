@@ -37,15 +37,15 @@ public class ReachIpeikoDoraTest {
             2, 0, 0, 0,
             0, 0, 0
         };
-        Tile last = M4;
+        Tile last = W4;
         hands = new Hands(tiles, last);
 
         List<Tile> dora = new ArrayList<>(1);
-        dora.add(TON);
+        dora.add(EAST);
         List<Tile> uradora = new ArrayList<>(1);
-        uradora.add(M9);
-        GeneralSituation general = new GeneralSituation(false, false, TON, dora, uradora);
-        PersonalSituation personal = new PersonalSituation(false, false, true, false, false, false, NAN);
+        uradora.add(W9);
+        GeneralSituation general = new GeneralSituation(false, false, EAST, dora, uradora);
+        PersonalSituation personal = new PersonalSituation(false, false, true, false, false, false, SOUTH);
         player = new Player(hands, general, personal);
         player.calculate();
     }

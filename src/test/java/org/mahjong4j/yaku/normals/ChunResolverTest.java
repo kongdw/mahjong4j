@@ -19,13 +19,13 @@ public class ChunResolverTest {
 
     @Before
     public void setUp() throws Exception {
-        List<Mentsu> mentsuList = new ArrayList<>(5);
-        mentsuList.add(new Toitsu(HAK));
-        mentsuList.add(new Shuntsu(true, S3));
-        mentsuList.add(new Shuntsu(true, P3));
-        mentsuList.add(new Shuntsu(true, M5));
-        mentsuList.add(new Kotsu(false, CHN));
-        MentsuComp comp = new MentsuComp(mentsuList, M5);
+        List<Meld> meldList = new ArrayList<>(5);
+        meldList.add(new Pair(WHITE));
+        meldList.add(new Sequence(true, T3));
+        meldList.add(new Sequence(true, D3));
+        meldList.add(new Sequence(true, W5));
+        meldList.add(new Triplet(false, RED));
+        MeldDirectory comp = new MeldDirectory(meldList, W5);
         resolver = new ChunResolver(comp);
     }
 

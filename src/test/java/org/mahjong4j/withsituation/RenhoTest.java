@@ -35,17 +35,17 @@ public class RenhoTest {
             0, 0, 0, 0,
             0, 0, 0
         };
-        Tile last = M9;
+        Tile last = W9;
         Hands hands = new Hands(tiles, last);
         List<Tile> dora = new ArrayList<>(1);
-        dora.add(CHN);
+        dora.add(RED);
 
         List<Tile> uradora = new ArrayList<>(1);
-        uradora.add(M2);
+        uradora.add(W2);
         GeneralSituation general;
-        general = new GeneralSituation(true, false, SHA, dora, uradora);
+        general = new GeneralSituation(true, false, WEST, dora, uradora);
         PersonalSituation personal;
-        personal = new PersonalSituation(false, false, false, false, false, false, NAN);
+        personal = new PersonalSituation(false, false, false, false, false, false, SOUTH);
 
         player = new Player(hands, general, personal);
         player.calculate();

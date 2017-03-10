@@ -1,6 +1,6 @@
 package org.mahjong4j.yaku.normals;
 
-import org.mahjong4j.hands.MentsuComp;
+import org.mahjong4j.hands.MeldDirectory;
 
 import static org.mahjong4j.yaku.normals.NormalYaku.CHITOITSU;
 
@@ -14,7 +14,7 @@ public class ChitoitsuResolver implements NormalYakuResolver {
     private final NormalYaku yakuEnum = CHITOITSU;
     private final int toitsuCount;
 
-    public ChitoitsuResolver(MentsuComp comp) {
+    public ChitoitsuResolver(MeldDirectory comp) {
         toitsuCount = comp.getToitsuCount();
     }
 

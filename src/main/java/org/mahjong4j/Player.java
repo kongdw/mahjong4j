@@ -1,8 +1,8 @@
 package org.mahjong4j;
 
 import org.mahjong4j.hands.Hands;
-import org.mahjong4j.hands.Mentsu;
-import org.mahjong4j.hands.MentsuComp;
+import org.mahjong4j.hands.Meld;
+import org.mahjong4j.hands.MeldDirectory;
 import org.mahjong4j.tile.Tile;
 import org.mahjong4j.yaku.normals.NormalYaku;
 import org.mahjong4j.yaku.normals.NormalYakuResolver;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Set;
 
 import static org.mahjong4j.Score.SCORE0;
-import static org.mahjong4j.tile.TileType.SANGEN;
+import static org.mahjong4j.tile.TileType.DRAGON;
 import static org.mahjong4j.yaku.normals.NormalYaku.*;
 import static org.mahjong4j.yaku.yakuman.Yakuman.KOKUSHIMUSO;
 
@@ -33,7 +33,7 @@ public class Player {
     private List<NormalYaku> normalYakuList = new ArrayList<>(0);
 
     //その時の面子の組
-    private MentsuComp comp;
+    private MeldDirectory comp;
 
     // 翻
     private int han = 0;
@@ -109,7 +109,7 @@ public class Player {
         List<Yakuman> yakumanStock = new ArrayList<>(4);
 
         //それぞれの面子の完成形で判定する
-        for (MentsuComp comp : hands.getMentsuCompSet()) {
+        for (MeldDirectory comp : hands.getMeldDirectorySet()) {
             Set<YakumanResolver> yakumanResolverSet
                 = Mahjong4jYakuConfig.getYakumanResolverSet(comp, generalSituation, personalSituation);
 
@@ -131,7 +131,7 @@ public class Player {
 
     private void findNormalYaku() {
         //それぞれの面子の完成形で判定する
-        for (MentsuComp comp : hands.getMentsuCompSet()) {
+        for (MeldDirectory comp : hands.getMeldDirectorySet()) {
             //役をストックしておく
             List<NormalYaku> yakuStock = new ArrayList<>(7);
             Set<NormalYakuResolver> resolverSet
@@ -189,8 +189,8 @@ public class Player {
         tmpFu += calcFuByAgari();
 
         // 各メンツの種類による加符
-        for (Mentsu mentsu : comp.getAllMentsu()) {
-            tmpFu += mentsu.getFu();
+        for (Meld meld : comp.getAllMentsu()) {
+            tmpFu += meld.getFu();
         }
 
         tmpFu += calcFuByWait(comp, hands.getLast());
@@ -214,7 +214,7 @@ public class Player {
         if (jantoTile == personalSituation.getJikaze()) {
             tmp += 2;
         }
-        if (jantoTile.getType() == SANGEN) {
+        if (jantoTile.getType() == DRAGON) {
             tmp += 2;
         }
         return tmp;
@@ -239,7 +239,7 @@ public class Player {
      * @param last
      * @return
      */
-    private int calcFuByWait(MentsuComp comp, Tile last) {
+    private int calcFuByWait(MeldDirectory comp, Tile last) {
         if (comp.isKanchan(last) || comp.isPenchan(last) || comp.isTanki(last)) {
             return 2;
         }

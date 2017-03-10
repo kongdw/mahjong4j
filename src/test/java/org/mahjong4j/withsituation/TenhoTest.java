@@ -35,17 +35,17 @@ public class TenhoTest {
             0, 0, 0, 0,
             0, 0, 0
         };
-        Tile last = M6;
+        Tile last = W6;
         Hands hands = new Hands(tiles, last);
         List<Tile> dora = new ArrayList<>(1);
-        dora.add(CHN);
+        dora.add(RED);
 
         List<Tile> uradora = new ArrayList<>(1);
-        uradora.add(M2);
+        uradora.add(W2);
         GeneralSituation generalSituation;
-        generalSituation = new GeneralSituation(true, false, TON, dora, uradora);
+        generalSituation = new GeneralSituation(true, false, EAST, dora, uradora);
         PersonalSituation personalSituation;
-        personalSituation = new PersonalSituation(true, true, false, false, false, false, TON);
+        personalSituation = new PersonalSituation(true, true, false, false, false, false, EAST);
 
         player = new Player(hands, generalSituation, personalSituation);
         player.calculate();

@@ -9,7 +9,7 @@ import org.mahjong4j.tile.Tile;
  *
  * @author yu1ro
  */
-public class Shuntsu extends Mentsu {
+public class Sequence extends Meld {
 
     /**
      * 順子であることがわかっている場合に利用します
@@ -17,10 +17,10 @@ public class Shuntsu extends Mentsu {
      * @param isOpen         明順子ならばtrue 暗順子ならばfalse
      * @param identifierTile 順子の組の二番目
      */
-    public Shuntsu(boolean isOpen, Tile identifierTile) throws IllegalShuntsuIdentifierException {
+    public Sequence(boolean isOpen, Tile identifierTile) throws IllegalShuntsuIdentifierException {
         setIdentifierTile(identifierTile);
         this.isOpen = isOpen;
-        this.isMentsu = true;
+        this.isMeld = true;
     }
 
     /**
@@ -31,7 +31,7 @@ public class Shuntsu extends Mentsu {
      * @param tile2  2枚目
      * @param tile3  3枚目
      */
-    public Shuntsu(boolean isOpen, Tile tile1, Tile tile2, Tile tile3) {
+    public Sequence(boolean isOpen, Tile tile1, Tile tile2, Tile tile3) {
         this.isOpen = isOpen;
 
         // TODO: 共通化
@@ -52,7 +52,7 @@ public class Shuntsu extends Mentsu {
             tile2 = tile3;
             tile3 = s;
         }
-        if (this.isMentsu = check(tile1, tile2, tile3)) {
+        if (this.isMeld = check(tile1, tile2, tile3)) {
             identifierTile = tile2;
         }
     }
@@ -114,20 +114,20 @@ public class Shuntsu extends Mentsu {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Shuntsu)) return false;
+        if (!(o instanceof Sequence)) return false;
 
-        Shuntsu shuntsu = (Shuntsu) o;
+        Sequence sequence = (Sequence) o;
 
-        if (isMentsu != shuntsu.isMentsu) return false;
-        if (isOpen != shuntsu.isOpen) return false;
-        return identifierTile == shuntsu.identifierTile;
+        if (isMeld != sequence.isMeld) return false;
+        if (isOpen != sequence.isOpen) return false;
+        return identifierTile == sequence.identifierTile;
 
     }
 
     @Override
     public int hashCode() {
         int result = identifierTile != null ? identifierTile.hashCode() : 0;
-        result = 31 * result + (isMentsu ? 1 : 0);
+        result = 31 * result + (isMeld ? 1 : 0);
         result = 31 * result + (isOpen ? 1 : 0);
         return result;
     }

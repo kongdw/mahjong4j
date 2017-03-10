@@ -13,11 +13,11 @@ public abstract class SanshokuResolver implements NormalYakuResolver {
     protected boolean sohzu = false;
 
     protected void detectType(TileType shuntsuType) {
-        if (shuntsuType == MANZU) {
+        if (shuntsuType == CHARACTER) {
             manzu = true;
-        } else if (shuntsuType == PINZU) {
+        } else if (shuntsuType == DOT) {
             pinzu = true;
-        } else if (shuntsuType == SOHZU) {
+        } else if (shuntsuType == BAMBOO) {
             sohzu = true;
         }
     }

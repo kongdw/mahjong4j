@@ -4,9 +4,9 @@ package org.mahjong4j.tile;
  * @author yu1ro
  */
 public enum TileType {
-    MANZU,//萬子
-    PINZU,//筒子
-    SOHZU,//索子
-    FONPAI,//風牌
-    SANGEN,//三元牌
+    CHARACTER,//萬子
+    DOT,//筒子
+    BAMBOO,//索子
+    WIND,//風牌
+    DRAGON,//三元牌
 }

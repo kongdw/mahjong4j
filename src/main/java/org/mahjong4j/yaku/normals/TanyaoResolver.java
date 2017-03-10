@@ -1,8 +1,8 @@
 package org.mahjong4j.yaku.normals;
 
-import org.mahjong4j.hands.Mentsu;
-import org.mahjong4j.hands.MentsuComp;
-import org.mahjong4j.hands.Shuntsu;
+import org.mahjong4j.hands.Meld;
+import org.mahjong4j.hands.MeldDirectory;
+import org.mahjong4j.hands.Sequence;
 
 import java.util.List;
 
@@ -16,10 +16,10 @@ import static org.mahjong4j.yaku.normals.NormalYaku.TANYAO;
  */
 public class TanyaoResolver implements NormalYakuResolver {
     private final NormalYaku yakuEnum = TANYAO;
-    private final List<Mentsu> allMentsu;
+    private final List<Meld> allMeld;
 
-    public TanyaoResolver(MentsuComp comp) {
-        allMentsu = comp.getAllMentsu();
+    public TanyaoResolver(MeldDirectory comp) {
+        allMeld = comp.getAllMentsu();
     }
 
     public NormalYaku getNormalYaku() {
@@ -27,15 +27,15 @@ public class TanyaoResolver implements NormalYakuResolver {
     }
 
     public boolean isMatch() {
-        for (Mentsu mentsu : allMentsu) {
-            int number = mentsu.getTile().getNumber();
+        for (Meld meld : allMeld) {
+            int number = meld.getTile().getNumber();
             if (number == 0 || number == 1 || number == 9) {
                 return false;
             }
 
-            int shuntsuNum = mentsu.getTile().getNumber();
+            int shuntsuNum = meld.getTile().getNumber();
             boolean isEdgeShuntsu = (shuntsuNum == 2 || shuntsuNum == 8);
-            if (mentsu instanceof Shuntsu && isEdgeShuntsu) {
+            if (meld instanceof Sequence && isEdgeShuntsu) {
                 return false;
             }
         }

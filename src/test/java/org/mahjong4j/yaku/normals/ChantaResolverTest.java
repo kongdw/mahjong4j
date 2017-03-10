@@ -19,14 +19,14 @@ public class ChantaResolverTest {
 
     @Before
     public void setUp() throws Exception {
-        List<Mentsu> matchList = new ArrayList<>(5);
-        matchList.add(new Toitsu(NAN));
-        matchList.add(new Shuntsu(true, M8));
-        matchList.add(new Shuntsu(true, S2));
-        matchList.add(new Kotsu(false, P1));
-        matchList.add(new Kantsu(false, SHA));
+        List<Meld> matchList = new ArrayList<>(5);
+        matchList.add(new Pair(SOUTH));
+        matchList.add(new Sequence(true, W8));
+        matchList.add(new Sequence(true, T2));
+        matchList.add(new Triplet(false, D1));
+        matchList.add(new Kong(false, WEST));
 
-        MentsuComp match = new MentsuComp(matchList, S3);
+        MeldDirectory match = new MeldDirectory(matchList, T3);
         chantaResolver = new ChantaResolver(match);
     }
 

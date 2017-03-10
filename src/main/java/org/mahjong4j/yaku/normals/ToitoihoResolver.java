@@ -1,6 +1,6 @@
 package org.mahjong4j.yaku.normals;
 
-import org.mahjong4j.hands.MentsuComp;
+import org.mahjong4j.hands.MeldDirectory;
 
 import static org.mahjong4j.yaku.normals.NormalYaku.TOITOIHO;
 
@@ -14,7 +14,7 @@ public class ToitoihoResolver implements NormalYakuResolver {
     private final NormalYaku yakuEnum = TOITOIHO;
     private final int kotsuCount;
 
-    public ToitoihoResolver(MentsuComp comp) {
+    public ToitoihoResolver(MeldDirectory comp) {
         kotsuCount = comp.getKantsuCount() + comp.getKotsuCount();
     }
 

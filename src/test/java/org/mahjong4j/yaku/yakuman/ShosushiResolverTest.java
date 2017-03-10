@@ -19,13 +19,13 @@ public class ShosushiResolverTest {
 
     @Before
     public void setUp() throws Exception {
-        List<Mentsu> list = new ArrayList<>(5);
-        list.add(new Toitsu(NAN));
-        list.add(new Kotsu(true, TON));
-        list.add(new Kotsu(true, M3));
-        list.add(new Kotsu(true, SHA));
-        list.add(new Kantsu(false, PEI));
-        MentsuComp comp = new MentsuComp(list, TON);
+        List<Meld> list = new ArrayList<>(5);
+        list.add(new Pair(SOUTH));
+        list.add(new Triplet(true, EAST));
+        list.add(new Triplet(true, W3));
+        list.add(new Triplet(true, WEST));
+        list.add(new Kong(false, NORTH));
+        MeldDirectory comp = new MeldDirectory(list, EAST);
         resolver = new ShosushiResolver(comp);
     }
 

@@ -4,15 +4,15 @@ import org.junit.Test;
 import org.mahjong4j.MahjongTileOverFlowException;
 import org.mahjong4j.Player;
 import org.mahjong4j.hands.Hands;
-import org.mahjong4j.hands.Kotsu;
-import org.mahjong4j.hands.Mentsu;
+import org.mahjong4j.hands.Triplet;
+import org.mahjong4j.hands.Meld;
 import org.mahjong4j.tile.Tile;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mahjong4j.tile.Tile.M2;
-import static org.mahjong4j.tile.Tile.P7;
+import static org.mahjong4j.tile.Tile.W2;
+import static org.mahjong4j.tile.Tile.D7;
 
 /**
  * TODO : lastの牌が無い場合も
@@ -30,8 +30,8 @@ public class MahjongTileOverFlowExceptionTest {
             0, 0, 0, 0,
             0, 0, 0
         };
-        Tile last = M2;
-        Hands hands = new Hands(tiles, last, new Kotsu(true, P7), new Kotsu(true, P7), new Kotsu(true, P7), new Kotsu(true, P7));
+        Tile last = W2;
+        Hands hands = new Hands(tiles, last, new Triplet(true, D7), new Triplet(true, D7), new Triplet(true, D7), new Triplet(true, D7));
         new Player(hands);
     }
 
@@ -44,13 +44,13 @@ public class MahjongTileOverFlowExceptionTest {
             0, 0, 0, 0,
             0, 0, 0
         };
-        Tile last = M2;
-        List<Mentsu> mentsuList = new ArrayList<>(4);
-        mentsuList.add(new Kotsu(true, P7));
-        mentsuList.add(new Kotsu(true, P7));
-        mentsuList.add(new Kotsu(true, P7));
-        mentsuList.add(new Kotsu(true, P7));
-        Hands hands = new Hands(tiles, last, mentsuList);
+        Tile last = W2;
+        List<Meld> meldList = new ArrayList<>(4);
+        meldList.add(new Triplet(true, D7));
+        meldList.add(new Triplet(true, D7));
+        meldList.add(new Triplet(true, D7));
+        meldList.add(new Triplet(true, D7));
+        Hands hands = new Hands(tiles, last, meldList);
         new Player(hands);
     }
 }

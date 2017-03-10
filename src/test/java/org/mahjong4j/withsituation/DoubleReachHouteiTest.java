@@ -35,17 +35,17 @@ public class DoubleReachHouteiTest {
             0, 0, 3, 0,
             0, 0, 0
         };
-        Tile last = M8;
+        Tile last = W8;
         Hands hands = new Hands(tiles, last);
         List<Tile> dora = new ArrayList<>(1);
-        dora.add(CHN);
+        dora.add(RED);
 
         List<Tile> uradora = new ArrayList<>(1);
-        uradora.add(M2);
+        uradora.add(W2);
         GeneralSituation general;
-        general = new GeneralSituation(false, true, NAN, dora, uradora);
+        general = new GeneralSituation(false, true, SOUTH, dora, uradora);
         PersonalSituation personal;
-        personal = new PersonalSituation(false, false, true, true, false, false, NAN);
+        personal = new PersonalSituation(false, false, true, true, false, false, SOUTH);
 
         player = new Player(hands, general, personal);
         player.calculate();

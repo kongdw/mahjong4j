@@ -15,7 +15,7 @@ import java.util.List;
 import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.core.IsCollectionContaining.hasItems;
 import static org.junit.Assert.assertThat;
-import static org.mahjong4j.tile.Tile.M4;
+import static org.mahjong4j.tile.Tile.W4;
 import static org.mahjong4j.yaku.normals.NormalYaku.*;
 
 /**
@@ -34,7 +34,7 @@ public class PinfuTanyaoIpeikoTest {
             0, 0, 0, 0,
             0, 0, 0
         };
-        Tile last = M4;
+        Tile last = W4;
         hands = new Hands(tiles, last);
         player = new Player(hands);
         player.calculate();

@@ -6,8 +6,8 @@ import org.mahjong4j.GeneralSituation;
 import org.mahjong4j.PersonalSituation;
 import org.mahjong4j.Player;
 import org.mahjong4j.hands.Hands;
-import org.mahjong4j.hands.Kotsu;
-import org.mahjong4j.hands.Shuntsu;
+import org.mahjong4j.hands.Triplet;
+import org.mahjong4j.hands.Sequence;
 import org.mahjong4j.tile.Tile;
 import org.mahjong4j.yaku.normals.NormalYaku;
 import org.mahjong4j.yaku.yakuman.Yakuman;
@@ -35,16 +35,16 @@ public class NoYakuTest {
             0, 0, 0, 0,
             0, 0, 0
         };
-        Tile last = M6;
+        Tile last = W6;
         List<Tile> dora = new ArrayList<>(1);
-        dora.add(PEI);
+        dora.add(NORTH);
         List<Tile> uradora = new ArrayList<>(2);
-        uradora.add(M9);
-        uradora.add(P4);
+        uradora.add(W9);
+        uradora.add(D4);
 
-        GeneralSituation general = new GeneralSituation(false, false, TON, dora, uradora);
-        PersonalSituation personal = new PersonalSituation(false, false, true, false, false, false, NAN);
-        hands = new Hands(tiles, last, new Kotsu(true, PEI), new Shuntsu(true, P4));
+        GeneralSituation general = new GeneralSituation(false, false, EAST, dora, uradora);
+        PersonalSituation personal = new PersonalSituation(false, false, true, false, false, false, SOUTH);
+        hands = new Hands(tiles, last, new Triplet(true, NORTH), new Sequence(true, D4));
 
         player = new Player(hands, general, personal);
         player.calculate();

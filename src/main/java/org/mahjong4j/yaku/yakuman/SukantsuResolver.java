@@ -1,6 +1,6 @@
 package org.mahjong4j.yaku.yakuman;
 
-import org.mahjong4j.hands.MentsuComp;
+import org.mahjong4j.hands.MeldDirectory;
 
 import static org.mahjong4j.yaku.yakuman.Yakuman.SUKANTSU;
 
@@ -15,7 +15,7 @@ public class SukantsuResolver implements YakumanResolver {
     private final int kantsuCount;
     private final Yakuman yakuman = SUKANTSU;
 
-    public SukantsuResolver(MentsuComp comp) {
+    public SukantsuResolver(MeldDirectory comp) {
         kantsuCount = comp.getKantsuCount();
     }
 

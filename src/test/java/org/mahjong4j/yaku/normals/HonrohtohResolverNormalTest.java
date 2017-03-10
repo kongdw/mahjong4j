@@ -19,13 +19,13 @@ public class HonrohtohResolverNormalTest {
 
     @Before
     public void setUp() throws Exception {
-        List<Mentsu> list = new ArrayList<>(5);
-        list.add(new Toitsu(M1));
-        list.add(new Kotsu(true, M9));
-        list.add(new Kotsu(false, SHA));
-        list.add(new Kotsu(false, HAT));
-        list.add(new Kantsu(true, TON));
-        MentsuComp comp = new MentsuComp(list, P9);
+        List<Meld> list = new ArrayList<>(5);
+        list.add(new Pair(W1));
+        list.add(new Triplet(true, W9));
+        list.add(new Triplet(false, WEST));
+        list.add(new Triplet(false, GREEN));
+        list.add(new Kong(true, EAST));
+        MeldDirectory comp = new MeldDirectory(list, D9);
         resolver = new HonrohtohResolver(comp);
     }
 

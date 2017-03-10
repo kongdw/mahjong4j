@@ -4,14 +4,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mahjong4j.Player;
 import org.mahjong4j.hands.Hands;
-import org.mahjong4j.hands.Kantsu;
+import org.mahjong4j.hands.Kong;
 import org.mahjong4j.yaku.yakuman.Yakuman;
 
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.mahjong4j.Score.SCORE0;
-import static org.mahjong4j.tile.Tile.M1;
+import static org.mahjong4j.tile.Tile.W1;
 import static org.mahjong4j.yaku.yakuman.Yakuman.CHINROTO;
 
 /**
@@ -29,7 +29,7 @@ public class ChinrohtohTest {
             0, 0, 0, 0,
             0, 0, 0
         };
-        Hands hands = new Hands(match, M1, new Kantsu(true, M1));
+        Hands hands = new Hands(match, W1, new Kong(true, W1));
         player = new Player(hands);
         player.calculate();
     }

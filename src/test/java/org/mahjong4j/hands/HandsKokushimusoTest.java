@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-import static org.mahjong4j.tile.Tile.CHN;
+import static org.mahjong4j.tile.Tile.RED;
 
 /**
  * @author yu1ro
@@ -22,12 +22,12 @@ public class HandsKokushimusoTest {
             1, 1, 1,
         };
 
-        actual = new Hands(tiles, CHN);
+        actual = new Hands(tiles, RED);
     }
 
     @Test
     public void testGetMentsuCompList() throws Exception {
-        assertEquals(0, actual.getMentsuCompSet().size());
+        assertEquals(0, actual.getMeldDirectorySet().size());
     }
 
     @Test
@@ -37,7 +37,7 @@ public class HandsKokushimusoTest {
 
     @Test
     public void testGetLast() throws Exception {
-        assertEquals(CHN, actual.getLast());
+        assertEquals(RED, actual.getLast());
     }
 
     @Test

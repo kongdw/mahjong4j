@@ -6,7 +6,7 @@ import org.mahjong4j.GeneralSituation;
 import org.mahjong4j.PersonalSituation;
 import org.mahjong4j.Player;
 import org.mahjong4j.hands.Hands;
-import org.mahjong4j.hands.Kantsu;
+import org.mahjong4j.hands.Kong;
 import org.mahjong4j.tile.Tile;
 import org.mahjong4j.yaku.normals.NormalYaku;
 
@@ -35,17 +35,17 @@ public class RinshankaihohSanshokuDoubleReachTsumoTest {
             0, 0, 0, 0,
             0, 0, 0
         };
-        Tile last = M9;
-        Hands hands = new Hands(tiles, last, new Kantsu(false, TON));
+        Tile last = W9;
+        Hands hands = new Hands(tiles, last, new Kong(false, EAST));
         List<Tile> dora = new ArrayList<>(1);
-        dora.add(CHN);
+        dora.add(RED);
 
         List<Tile> uradora = new ArrayList<>(1);
-        uradora.add(M2);
+        uradora.add(W2);
         GeneralSituation general;
-        general = new GeneralSituation(false, false, SHA, dora, uradora);
+        general = new GeneralSituation(false, false, WEST, dora, uradora);
         PersonalSituation personal;
-        personal = new PersonalSituation(true, false, true, true, false, true, NAN);
+        personal = new PersonalSituation(true, false, true, true, false, true, SOUTH);
 
         player = new Player(hands, general, personal);
         player.calculate();

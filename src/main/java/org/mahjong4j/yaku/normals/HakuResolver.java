@@ -1,12 +1,12 @@
 package org.mahjong4j.yaku.normals;
 
 
-import org.mahjong4j.hands.Kotsu;
-import org.mahjong4j.hands.MentsuComp;
+import org.mahjong4j.hands.Triplet;
+import org.mahjong4j.hands.MeldDirectory;
 
 import java.util.List;
 
-import static org.mahjong4j.tile.Tile.HAK;
+import static org.mahjong4j.tile.Tile.WHITE;
 import static org.mahjong4j.yaku.normals.NormalYaku.HAKU;
 
 /**
@@ -17,10 +17,10 @@ import static org.mahjong4j.yaku.normals.NormalYaku.HAKU;
  */
 public class HakuResolver implements NormalYakuResolver {
     private final NormalYaku yakuEnum = HAKU;
-    private final List<Kotsu> kotsuList;
+    private final List<Triplet> tripletList;
 
-    public HakuResolver(MentsuComp comp) {
-        kotsuList = comp.getKotsuKantsu();
+    public HakuResolver(MeldDirectory comp) {
+        tripletList = comp.getKotsuKantsu();
     }
 
     public NormalYaku getNormalYaku() {
@@ -28,8 +28,8 @@ public class HakuResolver implements NormalYakuResolver {
     }
 
     public boolean isMatch() {
-        for (Kotsu kotsu : kotsuList) {
-            if (kotsu.getTile() == HAK) {
+        for (Triplet triplet : tripletList) {
+            if (triplet.getTile() == WHITE) {
                 return true;
             }
         }

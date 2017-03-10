@@ -8,14 +8,14 @@ import org.mahjong4j.tile.Tile;
  *
  * @author yu1ro
  */
-public abstract class Mentsu {
+public abstract class Meld {
     protected Tile identifierTile;
 
     /**
      * 面子として成立している場合true
      * 面子として成立していない場合false
      */
-    protected boolean isMentsu;
+    protected boolean isMeld;
 
     /**
      * 明X子の場合はtrue
@@ -38,8 +38,8 @@ public abstract class Mentsu {
      *
      * @return 面子として成立しているか
      */
-    public boolean isMentsu() {
-        return isMentsu;
+    public boolean isMeld() {
+        return isMeld;
     }
 
     /**

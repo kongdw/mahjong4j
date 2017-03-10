@@ -36,16 +36,16 @@ public class ChitoitsuWithSituationTest {
             0, 2, 0, 0,
             0, 0, 0
         };
-        Tile last = M8;
+        Tile last = W8;
         List<Tile> dora = new ArrayList<>(1);
-        dora.add(CHN);
+        dora.add(RED);
 
         List<Tile> uradora = new ArrayList<>(1);
-        uradora.add(M2);
+        uradora.add(W2);
         GeneralSituation general;
-        general = new GeneralSituation(true, false, PEI, dora, uradora);
+        general = new GeneralSituation(true, false, NORTH, dora, uradora);
         PersonalSituation personal;
-        personal = new PersonalSituation(false, false, false, false, false, false, TON);
+        personal = new PersonalSituation(false, false, false, false, false, false, EAST);
         hands = new Hands(tiles, last);
         player = new Player(hands, general, personal);
         player.calculate();
